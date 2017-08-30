@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image4"
+    android:orientation="vertical"
+    tools:context="com.example.user.eshtri_first_pafge.MainActivity">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/myProductsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/myproducts"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp" />
+        <Button
+            android:id="@+id/addprod"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/addpb"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Clothes"
+                style="@style/CategoryStyle"
+                android:text="@string/clothes" />
+
+            <TextView
+                android:id="@+id/Carpets"
+                style="@style/CategoryStyle"
+                android:text="@string/carpets" />
+
+            <TextView
+                android:id="@+id/Herbs"
+                style="@style/CategoryStyle"
+                android:text="@string/herbs" />
+
+            <TextView
+                android:id="@+id/Food"
+                style="@style/CategoryStyle"
+                android:text="@string/food" />
+
+            <TextView
+                android:id="@+id/Tours"
+                style="@style/CategoryStyle"
+                android:text="@string/Tours" />
+            <TextView
+                android:id="@+id/Others"
+                style="@style/CategoryStyle"
+                android:text="@string/Others" />
+
+            <TextView
+                android:id="@+id/All"
+                style="@style/CategoryStyle"
+                android:text="@string/All" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="240dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="15dp">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/Username"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#f0e68c"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/username_input_for_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:maxLength="15"
+            android:textColor="#cccccc"
+            android:textColorHint="#cccccc" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/phonenumber"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#f0e68c"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/phnoe_num_for_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/writepass"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColor="#cccccc"
+            android:textColorHint="#cccccc" />
+
+        <Button
+            android:id="@+id/button_submit_signIn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/signup"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
