@@ -1,0 +1,53 @@
+<resources>
+    <string name ="addproduct">اضافة منتج</string>
+    <string name="app_name">Eshtery Badawy</string>
+    <string name="action_settings">اعدادات</string>
+    <string name="productname">اسم المنتج</string>
+    <string name ="choosecategory">اختر النوع</string>
+    <string name="wpn">اكتب مواصفات المنتج</string>
+    <string name="ShortDescription">نبذه عن المنتج</string>
+    <string name="wdh">اكتب الوصف هنا</string>
+    <string name="specs">خصائص</string>
+    <string name ="wd_h">اكتب الخصائص هنا</string>
+    <string name="wsp">اكتب الخصائص هنا</string>
+    <string name= "address">العنوان</string>
+    <string name="writeaddresshere">اكتب العنوان هنا</string>
+    <string name="addpb">اضف منتج</string>
+    <string name="specsa">خصائص</string>
+    <string name="mored">تفاصيل أكثر</string>
+    <string name="price">سعر</string>
+    <string name="writeproductprice">اكتب سعر المنتج</string>
+    <string name="myproducts">منتجاتي</string>
+    <string name="clothes">ملابس</string>
+    <string name="carpets">سجاد</string>
+    <string name="herbs">اعشاب</string>
+    <string name="food">مأكولات</string>
+    <string name="Tours">رحلات</string>
+    <string name="Others">أخري</string>
+    <string name="All">الكل</string>
+    <string name="contactus">اتصل بنا</string>
+    <string name="aboutus">عنا</string>
+    <string name="signin">تسجيل الدخول</string>
+    <string name="register">التسجيل</string>
+    <string name="writedescription">اكتب نبذه سريعه</string>
+    <string name="Username">اسم المستخدم</string>
+    <string name="writeusername">اكتب اسم المستخدم</string>
+    <string name="phonenumber">رقم الهاتف</string>
+    <string name="writepass">اكتب الرقم السري</string>
+    <string name="signup">التسجيل</string>
+    <string name="contactinfo">التواصل</string>
+    <string name="name">الاسم</string>
+    <string name="confirmationoption">طريقة التأكيد</string>
+    <string name="phoneCall">اتصال هاتفي</string>
+    <string name="Textmessage">رساله نصيه</string>
+
+
+
+
+
+
+
+
+
+
+</resources>

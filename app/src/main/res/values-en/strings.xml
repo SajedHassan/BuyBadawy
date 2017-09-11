@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Eshtery Badawy</string>
+    <string name="All">All</string>
+    <string name="Others">Others</string>
+    <string name="ShortDescription">Short Description</string>
+    <string name="Textmessage">Text Message</string>
+    <string name="Tours">Tours</string>
+    <string name="Username">Username</string>
+    <string name="aboutus">About Us</string>
+    <string name="action_settings">Settings</string>
+    <string name="addpb">Add Product</string>
+    <string name="addproduct">Add Product</string>
+    <string name="address">Address</string>
+    <string name="carpets">Carpets</string>
+    <string name="choosecategory">Choose Category</string>
+    <string name="clothes">Clothes</string>
+    <string name="confirmationoption">Confirmation Option</string>
+    <string name="contactinfo">Contact Info.</string>
+    <string name="contactus">Contact Us</string>
+    <string name="food">Food</string>
+    <string name="herbs">Herbs</string>
+    <string name="mored">More Details</string>
+    <string name="myproducts">My Products</string>
+    <string name="name">Name</string>
+    <string name="phoneCall">Phone Call</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="price">Price</string>
+    <string name="productname">Product Name</string>
+    <string name="register">Register</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="specs">Specifications</string>
+    <string name="specsa">Specifications</string>
+    <string name="wd_h">Write Specifications Here.</string>
+    <string name="wdh">Write Description Here.</string>
+    <string name="wpn">Write The Product\'s Description.</string>
+    <string name="writeaddresshere">Write Address Here.</string>
+    <string name="writedescription">Write Short Description.</string>
+    <string name="writepass">Type Password Here.</string>
+    <string name="writeproductprice">Write the Product\'s Price.</string>
+    <string name="writeusername">Write the UserName.</string>
+    <string name="wsp">Write Specifications Here.</string>
+</resources>
