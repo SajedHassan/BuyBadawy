@@ -24,6 +24,7 @@
             android:textSize="25dp"
             android:textStyle="bold" />
 
+
         <EditText
             android:id="@+id/username_input_for_sign_in"
             android:layout_width="match_parent"
@@ -32,6 +33,8 @@
             android:maxLength="15"
             android:textColor="#cccccc"
             android:textColorHint="#cccccc" />
+
+
 
         <TextView
             android:id="@+id/textView6"
@@ -45,10 +48,9 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/phnoe_num_for_sign_in"
+            android:id="@+id/phone_num_for_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/writepass"
             android:inputType="textPassword"
             android:maxLength="20"
             android:textColor="#cccccc"
@@ -61,7 +63,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="10dp"
-            android:text="@string/signup"
+            android:text="@string/signin"
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>

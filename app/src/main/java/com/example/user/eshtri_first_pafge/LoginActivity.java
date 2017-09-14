@@ -83,19 +83,26 @@ public class LoginActivity extends AppCompatActivity  {
                 DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
 
                 TextView username = (TextView)findViewById(R.id.username_input_for_sign_in);
-                TextView phoneNum = (TextView)findViewById(R.id.phnoe_num_for_sign_in);
+                TextView phoneNum = (TextView)findViewById(R.id.phone_num_for_sign_in);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
 
-                User loggedInUser = db.getUser(username.getText().toString());
-                if (loggedInUser.number.equals(phoneNum.getText().toString())) {
-//                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-//                    startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Logged In", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(getBaseContext(), "Not Loged in", Toast.LENGTH_SHORT).show();
-                }
+                startActivity(intent);
+
+//                User loggedInUser = db.getUser(username.getText().toString());
+//                if (loggedInUser.number.equals(phoneNum.getText().toString())) {
+////                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+////                    startActivity(intent);
+//                    Toast.makeText(getBaseContext(), "Logged In", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Toast.makeText(getBaseContext(), "Not Logged in", Toast.LENGTH_SHORT).show();
+//                }
+
+
             }
         });
+
+
         // Set up the login form.
 //        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 //        populateAutoComplete();

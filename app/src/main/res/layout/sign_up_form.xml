@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backg"
+
+
     >
 
+    <LinearLayout
 
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:id="@+id/firstNameL"
             android:layout_width="match_parent"
             android:textColor="#f0e68c"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="@string/name"
             android:textSize="20sp" />
@@ -36,6 +51,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
+            android:maxLines="1"
+            android:singleLine="true"
             />
 
     </LinearLayout>
@@ -50,6 +67,7 @@
             android:textColor="#f0e68c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/Username"
             android:textSize="20sp" />
 
@@ -71,7 +89,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="@string/writeusername" />
+            android:hint="@string/writeusername"
+            android:maxLines="1"
+            android:singleLine="true"/>
     </LinearLayout>
 
     <LinearLayout
@@ -84,6 +104,7 @@
             android:textColor="#f0e68c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="@string/phonenumber"
             android:textSize="20sp" />
 
@@ -104,6 +125,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
+            android:maxLines="1"
+            android:singleLine="true"
             />
     </LinearLayout>
 
@@ -117,8 +140,10 @@
             android:textColor="#f0e68c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:inputType="textEmailAddress"
             android:text="Email (optional)"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
 
     </LinearLayout>
@@ -137,7 +162,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="email..." />
+            android:maxLines="1"
+            android:singleLine="true"/>
     </LinearLayout>
 
 
@@ -145,6 +171,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/confirmationoption"
         android:textColor="#f0e68c"
         android:textSize="22sp" />
@@ -179,3 +206,4 @@
 
 
 </LinearLayout>
+    </LinearLayout>

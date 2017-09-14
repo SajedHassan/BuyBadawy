@@ -13,6 +13,7 @@
     <string name="addproduct">Add Product</string>
     <string name="address">Address</string>
     <string name="carpets">Carpets</string>
+    <string name="email">Email</string>
     <string name="choosecategory">Choose Category</string>
     <string name="clothes">Clothes</string>
     <string name="confirmationoption">Confirmation Option</string>
@@ -39,6 +40,6 @@
     <string name="writedescription">Write Short Description.</string>
     <string name="writepass">Type Password Here.</string>
     <string name="writeproductprice">Write the Product\'s Price.</string>
-    <string name="writeusername">Write the UserName.</string>
+    <string name="writeusername">You will use this name later to log into your account.</string>
     <string name="wsp">Write Specifications Here.</string>
 </resources>

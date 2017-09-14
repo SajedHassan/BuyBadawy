@@ -27,11 +27,11 @@
     <string name="All">الكل</string>
     <string name="contactus">اتصل بنا</string>
     <string name="aboutus">عنا</string>
-    <string name="signin">تسجيل الدخول</string>
+    <string name="signin"> الدخول</string>
     <string name="register">التسجيل</string>
     <string name="writedescription">اكتب نبذه سريعه</string>
     <string name="Username">اسم المستخدم</string>
-    <string name="writeusername">اكتب اسم المستخدم</string>
+    <string name="writeusername">سوف تستخدم هذا الاسم للدخول الي حسابك لاحقا</string>
     <string name="phonenumber">رقم الهاتف</string>
     <string name="writepass">اكتب الرقم السري</string>
     <string name="signup">التسجيل</string>
