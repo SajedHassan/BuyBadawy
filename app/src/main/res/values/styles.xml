@@ -9,6 +9,7 @@
     </style>
 
 
+
     <!-- Style for a category of vocabulary words -->
     <style name="CategoryStyle">
         <item name="android:layout_width">match_parent</item>

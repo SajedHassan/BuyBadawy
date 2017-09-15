@@ -7,8 +7,11 @@
     <string name="wpn">اكتب مواصفات المنتج</string>
     <string name="ShortDescription">نبذه عن المنتج</string>
     <string name="wdh">اكتب الوصف هنا</string>
+    <string name="email">بريد اكتروني</string>
+    <string name="optionalEmail">البريد الالكتروني (اختياري)</string>
     <string name="specs">خصائص</string>
     <string name ="wd_h">اكتب الخصائص هنا</string>
+    <string name="country">الدوله </string>
     <string name="wsp">اكتب الخصائص هنا</string>
     <string name= "address">العنوان</string>
     <string name="writeaddresshere">اكتب العنوان هنا</string>

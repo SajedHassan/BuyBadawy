@@ -8,8 +8,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/backg"
 
-
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
 
     <LinearLayout
 
@@ -90,9 +100,12 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/writeusername"
+
             android:maxLines="1"
             android:singleLine="true"/>
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -141,8 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:inputType="textEmailAddress"
-            android:text="Email (optional)"
+            android:text="@string/optionalEmail"
             android:textSize="20sp"/>
 
 
@@ -195,7 +207,7 @@
         android:textColor="#fff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email" />
+        android:text="@string/email" />
 
     <Button
         android:id="@+id/signUpB"
@@ -206,4 +218,6 @@
 
 
 </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
     </LinearLayout>

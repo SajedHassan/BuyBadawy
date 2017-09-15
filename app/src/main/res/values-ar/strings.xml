@@ -6,7 +6,6 @@
     <string name ="choosecategory">اختر النوع</string>
     <string name="wpn">اكتب مواصفات المنتج</string>
     <string name="ShortDescription">نبذه عن المنتج</string>
-    <string name="email">البريد الالكتروني</string>
     <string name="wdh">اكتب الوصف هنا</string>
     <string name="specs">خصائص</string>
     <string name ="wd_h">اكتب الخصائص هنا</string>
@@ -32,6 +31,9 @@
     <string name="register">التسجيل</string>
     <string name="writedescription">اكتب نبذه سريعه</string>
     <string name="Username">اسم المستخدم</string>
+    <string name="email">بريد اكتروني</string>
+    <string name="country">الدوله </string>
+    <string name="optionalEmail">البريد الالكتروني (اختياري)</string>
     <string name="writeusername">سوف تستخدم هذا الاسم للدخول الي حسابك لاحقا</string>
     <string name="phonenumber">رقم الهاتف</string>
     <string name="writepass">اكتب الرقم السري</string>

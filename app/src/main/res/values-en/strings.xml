@@ -24,8 +24,10 @@
     <string name="mored">More Details</string>
     <string name="myproducts">My Products</string>
     <string name="name">Name</string>
+    <string name="country">Country </string>
     <string name="phoneCall">Phone Call</string>
     <string name="phonenumber">Phone Number</string>
+    <string name="optionalEmail">Email (optional)</string>
     <string name="price">Price</string>
     <string name="productname">Product Name</string>
     <string name="register">Register</string>
