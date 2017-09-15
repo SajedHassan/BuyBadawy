@@ -71,14 +71,14 @@ public class SignUp extends AppCompatActivity {
 
 
                 if(emailValid && userNameValid && phoneValid && nameValid) {
-//                    DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
-//                    db.addUser(new User(0, nameVal, phoneVal, emailVal, usernameVal));
-
-                Intent intent = new Intent(getBaseContext(), SignUp.class);
-
-                startActivity(intent);
-
+//                   DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
+//                   db.addUser(new User(0, nameVal, phoneVal, emailVal, usernameVal));
+                    String task = "register";
+                    UserCDBH backgroundTask = new UserCDBH(SignUp.this);
+                    backgroundTask.execute(task,nameVal, usernameVal, phoneVal, emailVal);
+                    //finish();
                 }
+
 
             }
         });

@@ -80,23 +80,24 @@ public class LoginActivity extends AppCompatActivity  {
         signIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
+                //DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
 
-                TextView username = (TextView)findViewById(R.id.username_input_for_sign_in);
-                TextView phoneNum = (TextView)findViewById(R.id.phone_num_for_sign_in);
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                EditText username = (EditText)findViewById(R.id.username_input_for_sign_in);
+                EditText phoneNum = (EditText)findViewById(R.id.phone_num_for_sign_in);
 
-                startActivity(intent);
+                String usernameVal = username.getText().toString().trim();
+                String phoneNumVal = phoneNum.getText().toString().trim();
+                String task = "login";
 
-//                User loggedInUser = db.getUser(username.getText().toString());
-//                if (loggedInUser.number.equals(phoneNum.getText().toString())) {
-////                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-////                    startActivity(intent);
-//                    Toast.makeText(getBaseContext(), "Logged In", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(getBaseContext(), "Not Logged in", Toast.LENGTH_SHORT).show();
-//                }
+                UserCDBH backgroundTask = new UserCDBH(LoginActivity.this);
+
+                username.setText("");
+                phoneNum.setText("");
+
+                //execute the task
+                //passes the paras to the backgroundTask (param[0],param[1],param[2])
+                backgroundTask.execute(task,usernameVal,phoneNumVal);
+
 
 
             }
