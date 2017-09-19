@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity {
         phone = (EditText)findViewById(R.id.phone);
         email = (EditText)findViewById(R.id.email);
         emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        userNamePattern = "[a-z0-9_-]{3,20}";
+        userNamePattern = "[a-zA-Z0-9_-]{3,20}";
         namePattern = "[\\p{L} ]+";
         phonePattern = "[0][1][0-9]{9}";
 
