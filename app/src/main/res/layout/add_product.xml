@@ -54,6 +54,8 @@
                     android:hint="@string/wpn"
                     android:inputType="text"
                     android:maxLength="30"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="#fff"
                     android:textColorHint="#fff" />
 
@@ -158,6 +160,8 @@
                     android:hint="@string/writeproductprice"
                     android:inputType="text"
                     android:maxLength="10"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textColor="#fff"
                     android:textColorHint="#fff" />
 
