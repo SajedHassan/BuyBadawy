@@ -44,4 +44,22 @@
     <string name="writeproductprice">Write the Product\'s Price.</string>
     <string name="writeusername">You will use this name later to log into your account.</string>
     <string name="wsp">Write Specifications Here.</string>
+
+    <string name="about">"Eshtery Badawy" is a project made by Computer Engineering Students of Faculty of Engineering, Alexandria University in August, 2017 under the supervision of
+- Dr Shaimaa Lazem, PhD
+  Assistant Professor, City for Scientific Research and Technological applications (SRTA-City), Egypt. Researcher at Kingston University London.
+- Dr Danilo Giglitto
+   Research Associate at Kingston University London. PhD in Sociology.
+
+The main idea of the app. is to be the chain link between a bedouin seller and any buyer. It acts as an online bedouin market.
+
+The app. aims to encourage Bedouin to preserve their Bedouin crafts from fading with time and to give them the chance to share these amazing crafts with each other or with other communities.
+
+Team Leader: Hesham Medhat
+Team Members:
+Aya Aly
+Sajed Hassan
+Mohamed Ayman.
+</string>
+
 </resources>

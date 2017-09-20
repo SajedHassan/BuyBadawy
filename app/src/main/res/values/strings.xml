@@ -43,14 +43,7 @@
     <string name="confirmationoption">طريقة التأكيد</string>
     <string name="phoneCall">اتصال هاتفي</string>
     <string name="Textmessage">رساله نصيه</string>
-
-
-
-
-
-
-
-
+    <string name="about">\"Eshtery Badawy\" is a project made by Computer Engineering Students of Faculty of Engineering, Alexandria University in August, 2017 under the supervision of\n- Dr Shaimaa Lazem, PhD\n  Assistant Professor, City for Scientific Research and Technological applications (SRTA-City), Egypt. Researcher at Kingston University London.\n- Dr Danilo Giglitto\n   Research Associate at Kingston University London. PhD in Sociology.\n\nThe main idea of the app. is to be the chain link between a bedouin seller and any buyer. It acts as an online bedouin market.\n\nThe app. aims to encourage Bedouin to preserve their Bedouin crafts from fading with time and to give them the chance to share these amazing crafts with each other or with other communities.\n\nTeam Leader: Hesham Medhat\nTeam Members:\nAya Aly\nSajed Hassan\nMohamed Ayman.</string>
 
 
 </resources>

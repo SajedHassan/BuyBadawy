@@ -1,5 +1,5 @@
 "Eshtery Badawy" is a project made by Computer Engineering Students of Faculty of Engineering, Alexandria University in August, 2017 under the supervision of 
-- Dr Shimaa Lazem, PhD
+- Dr Shaimaa Lazem, PhD
   Assistant Professor, City for Scientific Research and Technological applications (SRTA-City), Egypt. Researcher at Kingston University London.
 - Dr Danilo Giglitto
    Research Associate at Kingston University London. PhD in Sociology.
