@@ -1,23 +1,30 @@
 package com.example.user.eshtri_first_pafge;
 
 
-import android.widget.Button;
-import android.widget.TextView;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    static int activeUser = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent caller = getIntent();
+
+        //TODO do not forget to get that btngam back to -1 after logging out
+        if (activeUser == -1) {
+            try {
+                activeUser = caller.getIntExtra("id", -1);
+            } catch (Exception e) {
+                //TODO
+            }
+        }
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.homepage);
@@ -27,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         myProduct.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), MyProducts.class);
-                startActivity(intent);
+                ProductCDBH gettingActiveUserProducts = new ProductCDBH(MainActivity.this);
+                String task = "read";
+                gettingActiveUserProducts.execute(task, MainActivity.activeUser);
             }
         });
 

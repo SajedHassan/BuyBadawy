@@ -8,40 +8,65 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-
-import static com.example.user.eshtri_first_pafge.R.id.price;
 
 /**
  * Created by user on 8/30/2017.
  */
 
 public class MyProducts extends AppCompatActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-        ArrayList<Product> products = new ArrayList<Product>();
-        products.add(new Product("عبايات حريمي", 10, 0, "none", "none", "none", 1));
-        products.add(new Product("ثوب", 11, 0, "none", "none", "none", 1));
-        products.add(new Product("عمة", 12, 0, "none", "none", "none", 1));
-        products.add(new Product("mgm3z4", 13, 0, "none", "none", "none", 1));
-        products.add(new Product("mgm3z5", 14, 0, "none", "none", "none", 1));
-        products.add(new Product("mgm3z6", 15, 0, "none", "none", "none", 1));
-
-
-        CA itemsAdapter = new CA(this, products);
-
-
         ListView lay = (ListView)findViewById(R.id.list);
-        if (lay != null)
-            Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        String json = getIntent().getStringExtra("json");
+
+//        products.add(new Product("عبايات حريمي", 10, 0, "none", "none", "none", 1));
 
 
-        lay.setAdapter(itemsAdapter);
+        try {
+            JSONArray jsonarray = new JSONArray(json);
+            for (int i = 0; i < jsonarray.length(); i++) {
+                JSONObject jsonobject = jsonarray.getJSONObject(i);
+
+                String name = jsonobject.getString("name");
+                int cat = Integer.parseInt(jsonobject.getString("category"));
+                String details = jsonobject.getString("details");
+                String properties = jsonobject.getString("properties");
+                String address = jsonobject.getString("address");
+                int price = Integer.parseInt(jsonobject.getString("price"));
+
+                products.add(new Product(name, cat, details, properties, address, price));
+
+                Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
+
+
+            }
+
+            CA itemsAdapter = new CA(this, products);
+            lay.setAdapter(itemsAdapter);
+
+        } catch (Exception e) {
+            // TODO
+        }
+
+
+
+
+//        if (lay != null)
+//            Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
+
+
+
 
         lay.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -59,4 +84,6 @@ public class MyProducts extends AppCompatActivity {
         });
 
     }
+
+
 }

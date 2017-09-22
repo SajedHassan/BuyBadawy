@@ -1,14 +1,10 @@
 package com.example.user.eshtri_first_pafge;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -95,7 +91,7 @@ public class FirstPage extends AppCompatActivity {
 
 
 
-        products.add(productCounter, new Product(name, price, 0, address, description, details, 1));
+        //products.add(productCounter, new Product(name, price, 0, address, description, details, 1));
         //TODO
         productCounter++;
 

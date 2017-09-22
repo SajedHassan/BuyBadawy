@@ -19,20 +19,16 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
 
-/**
- * Created by user on 9/15/2017.
- */
+public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
-public class UserCDBH extends AsyncTask<Object, Void, String> {
-
-    final int REGISTER = 0;
-    final int LOGIN = 1;
+    final int ADDNEW = 0;
+    final int READ = 1;
 
     int actionSelector;
 
     Context context;
 
-    UserCDBH(Context context){
+    ProductCDBH(Context context){
         this.context = context;
     }
 
@@ -40,22 +36,28 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
     @Override
     protected String doInBackground(Object... params) {
 
-        String urlRegistration = "https://eshtrybadawy.000webhostapp.com/LoginAndRegister-register.php";
-        String urlLogin  = "https://eshtrybadawy.000webhostapp.com/LoginAndRegister-login.php";
+
+
+        String urlRegistration = "https://eshtrybadawy.000webhostapp.com/products-addNew.php";
+        String urlLogin  = "https://eshtrybadawy.000webhostapp.com/products-read.php";
         String task = params[0].toString();
 
-        if(task.equals("register")){
-            String regName = params[1].toString();
-            String regUsername = params[2].toString();
-            String regPhone = params[3].toString();
-            String regEmail = params[4].toString();
+        if(task.equals("add")){
+            String owner = params[1].toString();
+            String name = params[2].toString();
+            String cat = params[3].toString();
+            String details = params[4].toString();
+            String properties = params[5].toString();
+            String address = params[6].toString();
+            String price = params[7].toString();
 
             SecureRandom random = new SecureRandom();
             byte bytes[] = new byte[20];
             random.nextBytes(bytes);
             String token = bytes.toString();
 
-            Log.v("hnaaaaaaa", regName + " , " + regUsername + " , " + regPhone+ " , " + regEmail);
+            Log.v("hnaaaaaaa", owner + " , " + name + " , " + cat + " , " + details
+                    + " , " + properties + " , " + address + " , " + price );
 
             try {
 
@@ -67,11 +69,14 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("identifier_name","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_username","UTF-8")+"="+URLEncoder.encode(regUsername,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_phone","UTF-8")+"="+URLEncoder.encode(regPhone,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8");
+                String myData = URLEncoder.encode("owner","UTF-8")+"="+URLEncoder.encode(owner,"UTF-8")+"&"
+                        +URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"
+                        +URLEncoder.encode("cat","UTF-8")+"="+URLEncoder.encode(cat,"UTF-8")+"&"
+                        +URLEncoder.encode("details","UTF-8")+"="+URLEncoder.encode(details,"UTF-8")+"&"
+                        +URLEncoder.encode("properties","UTF-8")+"="+URLEncoder.encode(properties,"UTF-8")+"&"
+                        +URLEncoder.encode("address","UTF-8")+"="+URLEncoder.encode(address,"UTF-8")+"&"
+                        +URLEncoder.encode("token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8")+"&"
+                        +URLEncoder.encode("price","UTF-8")+"="+URLEncoder.encode(price,"UTF-8");
 
 
 
@@ -95,9 +100,9 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
                 Log.v("res", dataResponse);
 
-                actionSelector = REGISTER;
+                actionSelector = ADDNEW;
 
-                return token + "," + dataResponse;
+                return token + "," +dataResponse+ "," +owner+ "," +name+ "," +cat+ "," +details+ "," +properties+ "," +address+ "," +price;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -105,9 +110,8 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             }
 
         }
-        if(task.equals("login")){
-            String loginUsername = params[1].toString();
-            String loginPhone = params[2].toString();
+        if(task.equals("read")){
+            String activeUser = params[1].toString();
             try {
                 URL url = new URL(urlLogin);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -119,8 +123,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("identifier_loginUsername","UTF-8")+"="+URLEncoder.encode(loginUsername,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_loginPhone","UTF-8")+"="+URLEncoder.encode(loginPhone,"UTF-8");
+                String myData = URLEncoder.encode("activeUser","UTF-8")+"="+URLEncoder.encode(activeUser,"UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -142,7 +145,8 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 System.out.println(dataResponse);
 
-                actionSelector = LOGIN;
+                actionSelector = READ;
+                Log.v("hnaaaaaaa", dataResponse);
                 return  dataResponse;
 
             } catch (MalformedURLException e) {
@@ -161,32 +165,37 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        if(actionSelector == REGISTER) {
+        if(actionSelector == ADDNEW) {
+
+
             String[] params = s.split("[,]");
             String token = params[0];
             String id = params[1];
+            String owner = params[2];
+            String name = params[3];
+            String cat = params[4];
+            String details = params[5];
+            String properties = params[6];
+            String address = params[7];
+            String price = params[8];
+
+            String link = "https://eshtrybadawy.000webhostapp.com/products-confirmation.php?sentToken="+token+"&id="+id;
+
             SendMail activationMail = new SendMail();
-            activationMail.execute("https://eshtrybadawy.000webhostapp.com/LoginAndRegister-activation.php?sentToken="+token+"&id="+id);
-            Intent intent = new Intent(context, FirstPage.class);
+            activationMail.execute(link, owner, name, cat, details, properties, address, price);
+
+
+
+            Intent intent = new Intent(context, MainActivity.class);
+            //display("Login Failed...", "That email and password do not match our records :(.");
             context.startActivity(intent);
-        } else if(actionSelector == LOGIN){
-            String test = "false";
-            int id;
-            Log.v("hnaaaaaaaaaaaaaaaaaa", s);
-            String[] serverResponse = s.split("[,]");
-            test = serverResponse[0];
+        } else if(actionSelector == READ){
+
+            Intent intent = new Intent(context, MyProducts.class);
+            intent.putExtra("json", s);
+            context.startActivity(intent);
 
 
-            if(test.equals("true")){
-                id = Integer.parseInt(serverResponse[1]);
-
-                Intent intent = new Intent(context,MainActivity.class);
-                intent.putExtra("id", id);
-
-                context.startActivity(intent);
-            }else{
-                display("Login Failed...", "That email and password do not match our records :(.");
-            }
         }else{
             display("Login Failed...","Something weird happened :(.");
         }
@@ -220,7 +229,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
         protected void onPostExecute(Integer res) {
             super.onPostExecute(res);
             if (res == 1) {
-                display("Done", "Go to your enail to activate your account");
+                display("Done", "Request Was Sent successfully.");
             } else {
                 display("Request Failed", "Please Check Your Internet Connection.");
             }
@@ -229,15 +238,21 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
         }
 
         protected Integer doInBackground(String... params) {
-
             String link = params[0];
+            String owner = params[1];
+            String name = params[2];
+            String cat = params[3];
+            String details = params[4];
+            String properties = params[5];
+            String address = params[6];
+            String price = params[7];
 
             Mail m = new Mail("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
             String[] toArr = {"hassanalmorsy1959@gmail.com", "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com", "promohamed5hater@gmail.com"};
             m.setTo(toArr);
             m.setFrom("Eshtery.Badawy@gmail.com");
-            m.setSubject("Eshtery Badawy | Account activation");
-            m.setBody("press on the link to activate your account " + link);
+            m.setSubject("Eshtery Badawy | New Product Request");
+            m.setBody("A user with id: " +owner+ " has added a product with name: " + name + " and category: " + cat + " with details: " + details + " properties: " + properties + " and address: " + address + " price: " + price + "$    to confirm it click the link below: " + link);
 
             try {
                 if(m.send()) {

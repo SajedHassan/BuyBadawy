@@ -1,7 +1,5 @@
 package com.example.user.eshtri_first_pafge;
 
-import java.util.ArrayList;
-
 /**
  * Created by user on 8/29/2017.
  */
@@ -17,7 +15,7 @@ public class Product {
 
     public int price;
 
-    public int picture;
+    //public int picture;
 
     public String address;
 
@@ -33,11 +31,11 @@ public class Product {
         //empty
     };
 
-    public Product (final String productN, final int price, final int picture, final String address, final String description, final String details, final int category) {
+    public Product (final String productN,   final int category, final String details, final String description,  final String address, final int price) {
         this.productN = productN;
         //this.seller = seller;
         this.price = price;
-        this.picture = picture;
+        //this.picture = picture;
         this.address = address;
         this.description = description;
         this.details = details;
