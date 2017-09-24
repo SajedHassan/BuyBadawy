@@ -72,8 +72,13 @@
 
                 <Spinner
                     android:id="@+id/catList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="#fff"
+                    android:textAlignment="center"
+                    android:spinnerMode="dropdown">
 
 
                 </Spinner>
@@ -165,6 +170,31 @@
                     android:textColor="#fff"
                     android:textColorHint="#fff" />
 
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Add Photo"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#f0e68c"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/AddPhoto"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="Click To Add Photo" />
+                <ImageView
+                    android:id="@+id/imgView"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"></ImageView>
                 <Button
                     android:id="@+id/button_submit"
                     android:layout_width="150dp"

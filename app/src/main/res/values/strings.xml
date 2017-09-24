@@ -1,4 +1,15 @@
 <resources>
+
+    <string-array name="categories">
+        <item>Clothes</item>
+            <item>Carpets</item>
+            <item>Herbs</item>
+            <item>Food</item>
+        <item>Tours</item>
+        <item>Others</item>
+
+    </string-array>
+
     <string name ="addproduct">اضافة منتج</string>
     <string name="app_name">Eshtery Badawy</string>
     <string name="action_settings">اعدادات</string>
