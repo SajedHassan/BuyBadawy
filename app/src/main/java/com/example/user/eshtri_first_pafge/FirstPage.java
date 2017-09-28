@@ -1,12 +1,16 @@
 package com.example.user.eshtri_first_pafge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
 import java.util.ArrayList;
+
+import static com.example.user.eshtri_first_pafge.R.id.username;
 
 public class FirstPage extends AppCompatActivity {
 
@@ -20,11 +24,28 @@ public class FirstPage extends AppCompatActivity {
     User activeUser;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPref = getSharedPreferences("users", Context.MODE_PRIVATE);
+        String id = sharedPref.getString("id", null);
+        if (id != null) {
+            int idI = Integer.parseInt(id);
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("id", idI);
+            startActivity(intent);
+        } else {
+            setContentView(R.layout.activity_first_page);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_page);
-        User admin = new User(idCounter++, "admin", "01226006598", "heshammedhat@acm.org", "admin");
-        users.add(0, admin);
+
+
+
+
 
     }
 
@@ -56,7 +77,7 @@ public class FirstPage extends AppCompatActivity {
         EditText nameText = (EditText)findViewById(R.id.name);
         String name = nameText.getText().toString();
 
-        EditText usernameText = (EditText) findViewById(R.id.username);
+        EditText usernameText = (EditText) findViewById(username);
         String username = usernameText.getText().toString();
 
         EditText phone_numberText = (EditText) findViewById(R.id.phone);

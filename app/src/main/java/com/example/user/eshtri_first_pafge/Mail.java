@@ -5,12 +5,9 @@ package com.example.user.eshtri_first_pafge;
  */
 import java.util.Date;
 import java.util.Properties;
+
 import javax.activation.CommandMap;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.activation.MailcapCommandMap;
-import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;

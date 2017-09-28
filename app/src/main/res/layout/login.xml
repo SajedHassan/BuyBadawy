@@ -51,7 +51,7 @@
             android:id="@+id/phone_num_for_sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="numberPassword"
             android:maxLength="20"
             android:textColor="#cccccc"
             android:textColorHint="#cccccc" />

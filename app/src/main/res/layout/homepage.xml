@@ -15,6 +15,7 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,6 +49,13 @@
             android:textSize="20dp" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/log_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out" />
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,6 +90,7 @@
                 android:id="@+id/Tours"
                 style="@style/CategoryStyle"
                 android:text="@string/Tours" />
+
             <TextView
                 android:id="@+id/Others"
                 style="@style/CategoryStyle"
@@ -91,6 +100,8 @@
                 android:id="@+id/All"
                 style="@style/CategoryStyle"
                 android:text="@string/All" />
+
+
 
 
         </LinearLayout>

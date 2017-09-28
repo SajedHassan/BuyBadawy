@@ -13,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
     static int activeUser = -1;
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,ChoosingLang.class);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent caller = getIntent();
@@ -26,8 +32,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+
+
+        //logging out
+
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.homepage);
+        Button logout = (Button)findViewById(R.id.log_out);
+        logout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBaseContext().getSharedPreferences("users", 0).edit().clear().commit();
+                Intent intent = new Intent(getBaseContext(),FirstPage.class);
+                startActivity(intent);
+            }
+        });
 
 
         Button myProduct = (Button)findViewById(R.id.myProductsBtn);

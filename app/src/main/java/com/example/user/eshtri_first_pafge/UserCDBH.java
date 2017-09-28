@@ -3,6 +3,7 @@ package com.example.user.eshtri_first_pafge;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -143,7 +144,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 System.out.println(dataResponse);
 
                 actionSelector = LOGIN;
-                return  dataResponse;
+                return  dataResponse + "," + loginUsername + "," + loginPhone;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -179,9 +180,18 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
             if(test.equals("true")){
                 id = Integer.parseInt(serverResponse[1]);
+                String userName = serverResponse[2];
+                String phone = serverResponse[3];
 
                 Intent intent = new Intent(context,MainActivity.class);
                 intent.putExtra("id", id);
+
+                SharedPreferences sharedPref = context.getSharedPreferences("users", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putString("id", Integer.toString(id));
+                editor.apply();
+
 
                 context.startActivity(intent);
             }else{
@@ -237,7 +247,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             m.setTo(toArr);
             m.setFrom("Eshtery.Badawy@gmail.com");
             m.setSubject("Eshtery Badawy | Account activation");
-            m.setBody("press on the link to activate your account " + link);
+            m.setBody("<h1>press on the link to activate your account </h1>" + link);
 
             try {
                 if(m.send()) {

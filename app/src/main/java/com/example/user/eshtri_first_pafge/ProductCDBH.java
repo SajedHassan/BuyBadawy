@@ -252,6 +252,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             m.setTo(toArr);
             m.setFrom("Eshtery.Badawy@gmail.com");
             m.setSubject("Eshtery Badawy | New Product Request");
+
             m.setBody("A user with id: " +owner+ " has added a product with name: " + name + " and category: " + cat + " with details: " + details + " properties: " + properties + " and address: " + address + " price: " + price + "$    to confirm it click the link below: " + link);
 
             try {
