@@ -1,7 +1,12 @@
 package com.example.user.eshtri_first_pafge;
 
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,12 +16,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
 
 
 public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -40,6 +39,8 @@ String chosenCategory;
 
         spinner.setAdapter(adapter);
 
+
+
         Button add = (Button) findViewById(R.id.button_submit);
         Button addPhoto = (Button) findViewById(R.id.AddPhoto);
 
@@ -52,6 +53,8 @@ String chosenCategory;
                 Intent i = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+
 
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
@@ -73,10 +76,10 @@ String chosenCategory;
                 String propertiesVal = properties.getText().toString();
                 String addressVal = address.getText().toString();
                 String priceVal =  price.getText().toString();
-                String catVal = "1";
+                String catVal = String.valueOf(spinner.getSelectedItemPosition());
 
                 String task = "add";
-                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this);
+                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null);
                 addNewProductThread.execute(task, MainActivity.activeUser, nameVal, catVal, detailsVal, propertiesVal, addressVal, priceVal);
             }
         });
@@ -99,6 +102,8 @@ String chosenCategory;
             Uri selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
+
+
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
@@ -109,6 +114,8 @@ String chosenCategory;
 
             ImageView imageView = (ImageView) findViewById(R.id.imgView);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            Toast.makeText(getBaseContext(), picturePath, Toast.LENGTH_SHORT).show();
+
 
         }
 }}

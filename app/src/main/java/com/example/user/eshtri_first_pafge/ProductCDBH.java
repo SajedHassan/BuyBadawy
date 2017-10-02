@@ -23,13 +23,17 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
     final int ADDNEW = 0;
     final int READ = 1;
+    final int READALL = 2;
 
     int actionSelector;
 
     Context context;
 
-    ProductCDBH(Context context){
+    public AsyncResponse delegate = null;
+
+    ProductCDBH(Context context, AsyncResponse interfaceObject){
         this.context = context;
+        this.delegate = interfaceObject;
     }
 
 
@@ -40,6 +44,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
         String urlRegistration = "https://eshtrybadawy.000webhostapp.com/products-addNew.php";
         String urlLogin  = "https://eshtrybadawy.000webhostapp.com/products-read.php";
+        String urlReadAllForMainActivity = "https://eshtrybadawy.000webhostapp.com/all_products_read.php";
         String task = params[0].toString();
 
         if(task.equals("add")){
@@ -146,7 +151,52 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                 System.out.println(dataResponse);
 
                 actionSelector = READ;
-                Log.v("hnaaaaaaa", dataResponse);
+                //Log.v("hnaaaaaaa", dataResponse);
+                return  dataResponse;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (task.equals("readAll")) {
+            String activeUser = params[1].toString();
+            try {
+                URL url = new URL(urlReadAllForMainActivity);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+
+                //send the email and password to the database
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("activeUser","UTF-8")+"="+URLEncoder.encode(activeUser,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                //get response from the database
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println(dataResponse);
+
+                actionSelector = READALL;
+                //Log.v("hnaaaaaaa", dataResponse);
                 return  dataResponse;
 
             } catch (MalformedURLException e) {
@@ -156,7 +206,8 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             }
         }
 
-        return null;    }
+        return null;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -191,12 +242,15 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             context.startActivity(intent);
         } else if(actionSelector == READ){
 
-            Intent intent = new Intent(context, MyProducts.class);
-            intent.putExtra("json", s);
-            context.startActivity(intent);
+            delegate.processFinish(s);
+//            Intent intent = new Intent(context, MyProducts.class);
+//            intent.putExtra("json", s);
+//            context.startActivity(intent);
 
 
-        }else{
+        } else if (actionSelector == READALL) {
+            delegate.processFinish(s);
+        } else {
             display("Login Failed...","Something weird happened :(.");
         }
     }
@@ -248,7 +302,8 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             String price = params[7];
 
             Mail m = new Mail("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
-            String[] toArr = {"hassanalmorsy1959@gmail.com", "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com", "promohamed5hater@gmail.com"};
+            String[] toArr = {"hassanalmorsy1959@gmail.com"};
+            //, "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com", "promohamed5hater@gmail.com"
             m.setTo(toArr);
             m.setFrom("Eshtery.Badawy@gmail.com");
             m.setSubject("Eshtery Badawy | New Product Request");

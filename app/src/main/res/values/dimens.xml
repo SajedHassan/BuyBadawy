@@ -5,6 +5,9 @@
 
     <dimen name="list_item_height">88dp</dimen>
 
+    <!-- floating butoon -->
+    <dimen name="fab_margin">16dp</dimen>
+
 </resources>
 
     <!-- Copyright (C) 2016 The Android Open Source Project
