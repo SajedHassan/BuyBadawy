@@ -47,13 +47,15 @@ public class MyProductsFragment extends Fragment{
         ProductCDBH gettingActiveUserProducts = new ProductCDBH(getActivity(), new AsyncResponse() {
             @Override
             public void processFinish(String json) {
-                Log.v("hnaaaaaaaaaaaaa", json);
+                Log.v("hnaaaaaaa my product", json);
 
                 try  {
                     JSONArray jsonarray = new JSONArray(json);
                     for (int i = 0; i < jsonarray.length(); i++) {
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
 
+                        int productId = Integer.parseInt(jsonobject.getString("id"));
+                        Log.v("my product id", productId + "");
                         String name = jsonobject.getString("name");
                         int cat = Integer.parseInt(jsonobject.getString("category"));
                         String details = jsonobject.getString("details");
@@ -61,9 +63,9 @@ public class MyProductsFragment extends Fragment{
                         String address = jsonobject.getString("address");
                         int price = Integer.parseInt(jsonobject.getString("price"));
 
-                        products.add(new Product(name, cat, details, properties, address, price));
+                        products.add(new Product(productId, name, cat, details, properties, address, price));
 
-                        Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
+                        Log.v("hnaaa json my product", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
 
 
                     }
@@ -91,7 +93,15 @@ public class MyProductsFragment extends Fragment{
                 //((TextView)v.findViewById(R.id.productName)).setText("sajed");
                 // assuming string and if you want to get the value on click of list item
                 // do what you intend to do on click of listview row
+                Product clickedItem = products.get(position);
                 Intent intent = new Intent(getActivity(), ProductPreview.class);
+
+                intent.putExtra("name", clickedItem.productN);
+                intent.putExtra("det", clickedItem.details);
+                intent.putExtra("pro", clickedItem.description);
+                intent.putExtra("address", clickedItem.address);
+                intent.putExtra("price", clickedItem.price+"");
+
                 startActivity(intent);
             }
         });

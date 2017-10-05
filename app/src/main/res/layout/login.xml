@@ -9,13 +9,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
         android:layout_marginTop="240dp"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_marginLeft="15dp">
+        >
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/Username"
@@ -28,19 +45,55 @@
         <EditText
             android:id="@+id/username_input_for_sign_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:maxLength="15"
-            android:textColor="#cccccc"
+            android:background="@drawable/editbox_style"
+            android:textColor="#000"
             android:textColorHint="#cccccc" />
 
+    </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            >
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="@string/phonenumber"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#f0e68c"
@@ -50,21 +103,35 @@
         <EditText
             android:id="@+id/phone_num_for_sign_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:inputType="numberPassword"
             android:maxLength="20"
-            android:textColor="#cccccc"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/editbox_style"
+            android:textColor="#000"
             android:textColorHint="#cccccc" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+           />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_submit_signIn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="-10dp"
             android:layout_marginTop="10dp"
             android:text="@string/signin"
             android:textSize="20dp"
             android:textStyle="bold" />
-    </LinearLayout>
+
 </LinearLayout>

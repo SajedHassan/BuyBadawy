@@ -11,7 +11,13 @@ public class Product {
      */
     public String productN;
 
-    public User seller;
+    public int productId;
+
+    public String owner;
+
+    public String image;
+
+    public String phone;
 
     public int price;
 
@@ -31,22 +37,44 @@ public class Product {
         //empty
     };
 
-    public Product (final String productN,   final int category, final String details, final String description,  final String address, final int price) {
+    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price) {
         this.productN = productN;
-        //this.seller = seller;
+        this.productId = productId;
         this.price = price;
-        //this.picture = picture;
         this.address = address;
         this.description = description;
         this.details = details;
         this.category = category;
     }
 
-    public String getNumber() {
-        return seller.number;
+    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, String image) {
+        this.productN = productN;
+        this.productId = productId;
+        this.price = price;
+        this.address = address;
+        this.description = description;
+        this.details = details;
+        this.category = category;
+        this.image = image;
     }
 
-    public String getEmail() {
-        return seller.email;
+    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, final String owner, final String phone) {
+        this.productN = productN;
+        this.productId = productId;
+        this.price = price;
+        this.address = address;
+        this.description = description;
+        this.details = details;
+        this.category = category;
+        this.owner = owner;
+        this.phone = phone;
     }
+
+//    public String getNumber() {
+//        return seller.number;
+//    }
+//
+//    public String getEmail() {
+//        return seller.email;
+//    }
 }

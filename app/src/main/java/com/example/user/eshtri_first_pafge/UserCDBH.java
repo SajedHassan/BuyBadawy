@@ -1,6 +1,7 @@
 package com.example.user.eshtri_first_pafge;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ import java.security.SecureRandom;
 
 public class UserCDBH extends AsyncTask<Object, Void, String> {
 
+    private ProgressDialog progressDialog;
     final int REGISTER = 0;
     final int LOGIN = 1;
 
@@ -98,7 +100,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
                 actionSelector = REGISTER;
 
-                return token + "," + dataResponse;
+                return token + "," + dataResponse + "," + regEmail;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -158,6 +160,11 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loding...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
     }
 
     @Override
@@ -166,9 +173,13 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             String[] params = s.split("[,]");
             String token = params[0];
             String id = params[1];
+            String email = params[2];
             SendMail activationMail = new SendMail();
-            activationMail.execute("https://eshtrybadawy.000webhostapp.com/LoginAndRegister-activation.php?sentToken="+token+"&id="+id);
+            activationMail.execute("https://eshtrybadawy.000webhostapp.com/LoginAndRegister-activation.php?sentToken="+token+"&id="+id, email);
             Intent intent = new Intent(context, FirstPage.class);
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
             context.startActivity(intent);
         } else if(actionSelector == LOGIN){
             String test = "false";
@@ -190,14 +201,26 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 SharedPreferences.Editor editor = sharedPref.edit();
 
                 editor.putString("id", Integer.toString(id));
+                editor.putString("phone", phone);
+                editor.putString("name", userName);
+
                 editor.apply();
 
+                if(progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
 
                 context.startActivity(intent);
             }else{
+                if(progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 display("Login Failed...", "That email and password do not match our records :(.");
             }
         }else{
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
             display("Login Failed...","Something weird happened :(.");
         }
     }
@@ -241,9 +264,10 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
         protected Integer doInBackground(String... params) {
 
             String link = params[0];
+            String email = params[1];
 
             Mail m = new Mail("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
-            String[] toArr = {"hassanalmorsy1959@gmail.com", "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com", "promohamed5hater@gmail.com"};
+            String[] toArr = {email};
             m.setTo(toArr);
             m.setFrom("Eshtery.Badawy@gmail.com");
             m.setSubject("Eshtery Badawy | Account activation");

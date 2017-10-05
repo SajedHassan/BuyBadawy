@@ -45,7 +45,7 @@ public class MyProducts extends AppCompatActivity {
                 String address = jsonobject.getString("address");
                 int price = Integer.parseInt(jsonobject.getString("price"));
 
-                products.add(new Product(name, cat, details, properties, address, price));
+                products.add(new Product(-1, name, cat, details, properties, address, price));
 
                 Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
 

@@ -5,6 +5,7 @@ package com.example.user.eshtri_first_pafge;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,9 +37,22 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
     public void onBindViewHolder(SingleItemRowHolder holder, int i) {
 
         SingleItemModel singleItem = itemsList.get(i);
-
         holder.tvTitle.setText(singleItem.getName());
-        //holder.itemImage.setImageResource(R.mipmap.test);
+        holder.itemImage.setImageResource(R.mipmap.test);
+
+        holder.name = singleItem.getName();
+        holder.det = singleItem.getDetails();
+        holder.pro = singleItem.getProperties();
+        holder.address = singleItem.getAddress();
+        holder.price = singleItem.getPrice();
+        holder.owner = singleItem.getOwner();
+        holder.phone = singleItem.getPhone();
+
+
+
+        //setting info of each product
+
+
 
 
        /* Glide.with(mContext)
@@ -60,6 +74,14 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         protected ImageView itemImage;
 
+        protected String name;
+        protected String det;
+        protected String pro;
+        protected String address;
+        protected String price;
+        protected String owner;
+        protected String phone;
+
 
         public SingleItemRowHolder(View view) {
             super(view);
@@ -74,6 +96,19 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
 
                     Toast.makeText(v.getContext(), tvTitle.getText(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, ProductPreview.class);
+
+                    intent.putExtra("name", name);
+                    intent.putExtra("det", det);
+                    intent.putExtra("pro", pro);
+                    intent.putExtra("address", address);
+                    intent.putExtra("price", price);
+                    intent.putExtra("owner", owner);
+                    intent.putExtra("phone", phone);
+                    intent.putExtra("publicProduct", true);
+
+
+                    mContext.startActivity(intent);
 
                 }
             });

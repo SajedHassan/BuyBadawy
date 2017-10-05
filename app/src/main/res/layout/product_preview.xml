@@ -28,7 +28,7 @@
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/productname"
@@ -49,7 +49,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/myp_roduct_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -75,16 +75,27 @@
                 />
 
             <TextView
+                android:id="@+id/owner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/contactinfo"
+                android:textSize="18sp"
+                android:textColor="#fff"
+
+                />
+
+            <TextView
                 android:id="@+id/num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="@string/phonenumber"
-                android:textSize="18sp"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/place"
+                android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -92,14 +103,7 @@
                 android:textSize="18sp"
                 android:textColor="#fff"/>
 
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="sajed.hassan@yahoo.com"
-                android:textSize="18sp"
-                android:textColor="#fff"/>
+
 
             <TextView
                 android:id="@+id/price"
@@ -107,8 +111,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:text="115$"
-                android:textSize="18sp"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:textSize="18sp" />
 
 
         </LinearLayout>

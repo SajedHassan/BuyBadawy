@@ -1,9 +1,13 @@
 package com.example.user.eshtri_first_pafge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -16,8 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,ChoosingLang.class);
-        startActivity(intent);
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Constants.closeAppRequested) {
+            finish();
+        }
     }
 
     @Override
@@ -29,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         if (activeUser == -1) {
             try {
                 activeUser = caller.getIntExtra("id", -1);
+                Toast.makeText(this, activeUser + "", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 //TODO
             }
@@ -54,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),
                             "My products", Toast.LENGTH_SHORT).show();
 
+                } else if ( position == 0) {
+                    MainFragment temp = new MainFragment();
+                    temp.backAfterDeletion(MainActivity.this);
                 }
             }
+
 
             // This method will be invoked when the current page is scrolled
             @Override
@@ -73,7 +91,23 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        ImageButton logoutBtn = (ImageButton)findViewById(R.id.log_out_image);
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPref = getBaseContext().getSharedPreferences("users", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
 
+                editor.remove("id");
+                editor.remove("name");
+                editor.remove("phone");
+
+                editor.apply();
+
+                Intent intent = new Intent(getBaseContext(), FirstPage.class);
+                startActivity(intent);
+            }
+        });
 
 
 

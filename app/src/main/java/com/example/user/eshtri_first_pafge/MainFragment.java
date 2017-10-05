@@ -1,5 +1,6 @@
 package com.example.user.eshtri_first_pafge;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,13 +21,14 @@ public class MainFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 
     private int mPage;
-    private View containerAvtivity;
+    static private View containerAvtivity;
     ArrayList<Product> clothes;
     ArrayList<Product> carpets;
     ArrayList<Product> herbs;
     ArrayList<Product> food;
     ArrayList<Product> tours;
     ArrayList<Product> others;
+
 
     ArrayList<ArrayList<Product>> allCategoriesProducts;
 
@@ -46,6 +49,8 @@ public class MainFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
     }
+
+
 
     @Override
     public void onStart() {
@@ -98,7 +103,38 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main, container, false);
         containerAvtivity = view;
+        Toast.makeText(getActivity(), "Welcome back", Toast.LENGTH_SHORT).show();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getActivity(), "back", Toast.LENGTH_SHORT).show();
+    }
+
+    public void backAfterDeletion(final Context context) {
+        //repeated code from onstart
+        clothes = new ArrayList<Product>();
+        carpets = new ArrayList<Product>();
+        herbs = new ArrayList<Product>();
+        food = new ArrayList<Product>();
+        tours = new ArrayList<Product>();
+        others = new ArrayList<Product>();
+        allCategoriesProducts = new ArrayList<ArrayList<Product>>();
+
+        ProductCDBH gettingActiveUserProducts = new ProductCDBH(context,true ,new AsyncResponse() {
+            @Override
+            public void processFinish(String json) {
+                Log.v("readAll", json);
+                fetchData(json);
+                setAllDataAdabter();
+            }
+        });
+
+        String task = "readAll";
+        gettingActiveUserProducts.execute(task, MainActivity.activeUser);
     }
 
 
@@ -110,6 +146,8 @@ public class MainFragment extends Fragment {
             for (int i = 0; i < jsonarray.length(); i++) {
                 JSONObject jsonobject = jsonarray.getJSONObject(i);
 
+                String owner = jsonobject.getString("owner");
+                String phone = jsonobject.getString("phone");
                 String name = jsonobject.getString("name");
                 int cat = Integer.parseInt(jsonobject.getString("category"));
                 String details = jsonobject.getString("details");
@@ -119,27 +157,27 @@ public class MainFragment extends Fragment {
 
                 switch (cat) {
                     case 0: {
-                        clothes.add(new Product(name, cat, details, properties, address, price));
+                        clothes.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     case 1: {
-                        carpets.add(new Product(name, cat, details, properties, address, price));
+                        carpets.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     case 2: {
-                        herbs.add(new Product(name, cat, details, properties, address, price));
+                        herbs.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     case 3: {
-                        food.add(new Product(name, cat, details, properties, address, price));
+                        food.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     case 4: {
-                        tours.add(new Product(name, cat, details, properties, address, price));
+                        tours.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     case 5: {
-                        others.add(new Product(name, cat, details, properties, address, price));
+                        others.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
                     }
                     default: {
@@ -206,7 +244,7 @@ public class MainFragment extends Fragment {
 
                 ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
                 for (int j = 0; j < numOfItemsInSection; j++) {
-                    singleItem.add(new SingleItemModel(section.get(j).productN, "URL " + j));
+                    singleItem.add(new SingleItemModel(section.get(j).owner, section.get(j).phone, section.get(j).productN, section.get(j).description, section.get(j).details, section.get(j).address, section.get(j).price + ""));
                 }
 
                 dm.setAllItemsInSection(singleItem);

@@ -6,26 +6,33 @@ package com.example.user.eshtri_first_pafge;
 public class SingleItemModel {
 
 
+    private String owner;
+    private String phone;
     private String name;
-    private String url;
-    private String description;
-
+    private String properties;
+    private String details;
+    private String address;
+    private String price;
 
     public SingleItemModel() {
     }
 
-    public SingleItemModel(String name, String url) {
+    public SingleItemModel(String owner, String phone, String name, String properties, String details, String address, String price) {
+        this.owner = owner;
+        this.phone = phone;
         this.name = name;
-        this.url = url;
+        this.properties = properties;
+        this.details = details;
+        this.address = address;
+        this.price = price;
     }
 
-
-    public String getUrl() {
-        return url;
+    public String getProperties() {
+        return properties;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setProperties(String properties) {
+        this.properties = properties;
     }
 
     public String getName() {
@@ -36,13 +43,45 @@ public class SingleItemModel {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(String description) {
+        this.details = description;
     }
 
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
 }

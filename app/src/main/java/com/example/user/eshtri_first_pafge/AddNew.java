@@ -2,11 +2,10 @@ package com.example.user.eshtri_first_pafge;
 
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,13 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-
-String chosenCategory;
+    ImageView imageView;
+    String chosenCategory;
     private static int RESULT_LOAD_IMAGE = 1;
     Spinner spinner;
 
@@ -79,7 +77,8 @@ String chosenCategory;
                 String catVal = String.valueOf(spinner.getSelectedItemPosition());
 
                 String task = "add";
-                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null);
+                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null, image);
                 addNewProductThread.execute(task, MainActivity.activeUser, nameVal, catVal, detailsVal, propertiesVal, addressVal, priceVal);
             }
         });
@@ -99,22 +98,26 @@ String chosenCategory;
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            ImageView imageView = (ImageView) findViewById(R.id.imgView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            Toast.makeText(getBaseContext(), picturePath, Toast.LENGTH_SHORT).show();
+            Uri imageUri = data.getData();
+//            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+//
+            imageView = (ImageView) findViewById(R.id.imgView);
+            try {
+                imageView.setImageURI(imageUri);
+            } catch (Exception e) {
+                //Somt Images is not being selected and cases the app to crash
+            }
+//            try {
+//                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+//                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+//
+//                ImageView imageView = (ImageView) findViewById(R.id.imgView);
+//                imageView.setImageBitmap(selectedImage);
+//                //Toast.makeText(getBaseContext(), picturePath, Toast.LENGTH_SHORT).show();
+//
+//            } catch (Exception e) {
+//
+//            }
 
 
         }

@@ -1,13 +1,17 @@
 package com.example.user.eshtri_first_pafge;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,9 +25,15 @@ import java.security.SecureRandom;
 
 public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
+    private ProgressDialog progressDialog;
+
+    Bitmap image;
+    boolean progressPermitted = true;
+
     final int ADDNEW = 0;
     final int READ = 1;
     final int READALL = 2;
+    final int DELETE = 3;
 
     int actionSelector;
 
@@ -32,6 +42,19 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
     public AsyncResponse delegate = null;
 
     ProductCDBH(Context context, AsyncResponse interfaceObject){
+        this.context = context;
+        this.delegate = interfaceObject;
+    }
+
+    ProductCDBH(Context context, AsyncResponse interfaceObject, Bitmap image){
+        this.context = context;
+        this.delegate = interfaceObject;
+        this.image = image;
+
+    }
+
+    ProductCDBH(Context context,boolean progressPermited, AsyncResponse interfaceObject){
+        this.progressPermitted = progressPermited;
         this.context = context;
         this.delegate = interfaceObject;
     }
@@ -45,9 +68,18 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
         String urlRegistration = "https://eshtrybadawy.000webhostapp.com/products-addNew.php";
         String urlLogin  = "https://eshtrybadawy.000webhostapp.com/products-read.php";
         String urlReadAllForMainActivity = "https://eshtrybadawy.000webhostapp.com/all_products_read.php";
+        String urlDelete = "https://eshtrybadawy.000webhostapp.com/products-delete.php";
+
         String task = params[0].toString();
 
         if(task.equals("add")){
+
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+
+
+
             String owner = params[1].toString();
             String name = params[2].toString();
             String cat = params[3].toString();
@@ -80,6 +112,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                         +URLEncoder.encode("details","UTF-8")+"="+URLEncoder.encode(details,"UTF-8")+"&"
                         +URLEncoder.encode("properties","UTF-8")+"="+URLEncoder.encode(properties,"UTF-8")+"&"
                         +URLEncoder.encode("address","UTF-8")+"="+URLEncoder.encode(address,"UTF-8")+"&"
+                        +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(encodedImage,"UTF-8")+"&"
                         +URLEncoder.encode("token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8")+"&"
                         +URLEncoder.encode("price","UTF-8")+"="+URLEncoder.encode(price,"UTF-8");
 
@@ -205,6 +238,53 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                 e.printStackTrace();
             }
         }
+        if (task.equals("delete")) {
+            String productID = params[1].toString();
+            Log.v("check deleted id", productID);
+
+            try {
+                URL url = new URL(urlDelete);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+
+                //send the email and password to the database
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("productID","UTF-8")+"="+URLEncoder.encode(productID,"UTF-8");
+                bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                //get response from the database
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println(dataResponse);
+
+                actionSelector = DELETE;
+                Log.v("hnaaaaaaa", dataResponse);
+                return  dataResponse;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return null;
     }
@@ -212,6 +292,14 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        //progress permitted could be removed BUT WITH ALL IT"S EXISTANCE
+        if (progressPermitted) {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("Loding...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+        progressPermitted = true;
     }
 
     @Override
@@ -239,9 +327,15 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
             Intent intent = new Intent(context, MainActivity.class);
             //display("Login Failed...", "That email and password do not match our records :(.");
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
             context.startActivity(intent);
         } else if(actionSelector == READ){
 
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
             delegate.processFinish(s);
 //            Intent intent = new Intent(context, MyProducts.class);
 //            intent.putExtra("json", s);
@@ -249,9 +343,20 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
 
         } else if (actionSelector == READALL) {
+            if(progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            delegate.processFinish(s);
+        } else if (actionSelector == DELETE) {
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
             delegate.processFinish(s);
         } else {
-            display("Login Failed...","Something weird happened :(.");
+            if(progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            display("Can't get the products...","Something weird happened :(.");
         }
     }
 
