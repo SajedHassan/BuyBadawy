@@ -47,16 +47,24 @@ public class MyProductsFragment extends Fragment{
         ProductCDBH gettingActiveUserProducts = new ProductCDBH(getActivity(), new AsyncResponse() {
             @Override
             public void processFinish(String json) {
-                Log.v("hnaaaaaaa my product", json);
+                Log.v("kaaaaaaaa", json);
+                Log.v("poooo","ka");
 
                 try  {
+                    Log.v("poooo","0");
                     JSONArray jsonarray = new JSONArray(json);
+                    Log.v("poooo","1");
                     for (int i = 0; i < jsonarray.length(); i++) {
+                        Log.v("poooo","2");
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
+                        Log.v("poooo","3");
 
                         int productId = Integer.parseInt(jsonobject.getString("id"));
+                        Log.v("poooo","4");
+
                         Log.v("my product id", productId + "");
                         String name = jsonobject.getString("name");
+                        //String image = jsonobject.getString("image");
                         int cat = Integer.parseInt(jsonobject.getString("category"));
                         String details = jsonobject.getString("details");
                         String properties = jsonobject.getString("properties");
@@ -65,7 +73,7 @@ public class MyProductsFragment extends Fragment{
 
                         products.add(new Product(productId, name, cat, details, properties, address, price));
 
-                        Log.v("hnaaa json my product", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
+                        Log.v("saaaaaaaaaaaaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
 
 
                     }
@@ -75,6 +83,7 @@ public class MyProductsFragment extends Fragment{
 
                 } catch (Exception e) {
                     // TODO
+                    Log.v("pooo", e.getMessage());
                 }
             }
         });
@@ -96,6 +105,7 @@ public class MyProductsFragment extends Fragment{
                 Product clickedItem = products.get(position);
                 Intent intent = new Intent(getActivity(), ProductPreview.class);
 
+                //intent.putExtra("image", clickedItem.image);
                 intent.putExtra("name", clickedItem.productN);
                 intent.putExtra("det", clickedItem.details);
                 intent.putExtra("pro", clickedItem.description);

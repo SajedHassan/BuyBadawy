@@ -47,16 +47,16 @@ public class Product {
         this.category = category;
     }
 
-    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, String image) {
-        this.productN = productN;
-        this.productId = productId;
-        this.price = price;
-        this.address = address;
-        this.description = description;
-        this.details = details;
-        this.category = category;
-        this.image = image;
-    }
+//    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, String image) {
+//        this.productN = productN;
+//        this.productId = productId;
+//        this.price = price;
+//        this.address = address;
+//        this.description = description;
+//        this.details = details;
+//        this.category = category;
+//        this.image = image;
+//    }
 
     public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, final String owner, final String phone) {
         this.productN = productN;

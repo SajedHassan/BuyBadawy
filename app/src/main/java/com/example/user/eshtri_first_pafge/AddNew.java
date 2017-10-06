@@ -2,8 +2,6 @@ package com.example.user.eshtri_first_pafge;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -77,8 +75,8 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
                 String catVal = String.valueOf(spinner.getSelectedItemPosition());
 
                 String task = "add";
-                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null, image);
+                ///Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null);
                 addNewProductThread.execute(task, MainActivity.activeUser, nameVal, catVal, detailsVal, propertiesVal, addressVal, priceVal);
             }
         });
@@ -121,7 +119,8 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
 
 
         }
-}}
+    }
+}
 
 
 

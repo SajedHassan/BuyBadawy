@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.util.Base64;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -74,9 +72,10 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
         if(task.equals("add")){
 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
+
 
 
 
@@ -112,7 +111,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                         +URLEncoder.encode("details","UTF-8")+"="+URLEncoder.encode(details,"UTF-8")+"&"
                         +URLEncoder.encode("properties","UTF-8")+"="+URLEncoder.encode(properties,"UTF-8")+"&"
                         +URLEncoder.encode("address","UTF-8")+"="+URLEncoder.encode(address,"UTF-8")+"&"
-                        +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(encodedImage,"UTF-8")+"&"
+                        //+URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(encodedImage,"UTF-8")+"&"
                         +URLEncoder.encode("token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8")+"&"
                         +URLEncoder.encode("price","UTF-8")+"="+URLEncoder.encode(price,"UTF-8");
 
