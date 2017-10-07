@@ -19,6 +19,9 @@ import com.example.user.eshtri_first_pafge.RecyclerViewDataAdapter.ItemRowHolder
 
 import java.util.ArrayList;
 
+/**
+ * Extends the adapter class.
+ */
 public class RecyclerViewDataAdapter extends Adapter<ItemRowHolder> {
 
 	private final ArrayList<SectionDataModel> dataList;

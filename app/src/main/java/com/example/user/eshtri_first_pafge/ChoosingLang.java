@@ -18,9 +18,9 @@ import com.example.user.eshtri_first_pafge.R.layout;
 import java.util.Locale;
 
 /**
+ * This class deals with choosing the language of the app.
  * Created by user on 8/29/2017.
  */
-
 public class ChoosingLang extends AppCompatActivity {
 
 	@Override

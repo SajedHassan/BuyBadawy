@@ -24,6 +24,9 @@ import com.example.user.eshtri_first_pafge.SectionListDataAdapter.SingleItemRowH
 
 import java.util.ArrayList;
 
+/**
+ * For displaying list of a section.
+ */
 public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
 
 	private final ArrayList<SingleItemModel> itemsList;
@@ -73,9 +76,7 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
 	public class SingleItemRowHolder extends ViewHolder {
 
 		protected TextView tvTitle;
-
 		protected ImageView itemImage;
-
 		protected String name;
 		protected String det;
 		protected String pro;

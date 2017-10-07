@@ -21,6 +21,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Class that deals with the products to fetch from the database.
+ */
 public class MyProductsFragment extends Fragment {
 	public static final String ARG_PAGE = "ARG_PAGE";
 	ArrayList<Product> products;

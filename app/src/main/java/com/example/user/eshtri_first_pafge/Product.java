@@ -1,9 +1,9 @@
 package com.example.user.eshtri_first_pafge;
 
 /**
+ * Class represents a product of any type.
  * Created by user on 8/29/2017.
  */
-
 public class Product {
 
 	/**
@@ -37,6 +37,16 @@ public class Product {
 		// empty
 	}
 
+	/**
+	 * Constructor that generates the product object.
+	 * @param productId id.
+	 * @param productN number.
+	 * @param category category.
+	 * @param details detailed desciption of the product's specss.
+	 * @param description description of the product.
+	 * @param address address of the seller.
+	 * @param price of the product.
+	 */
 	public Product(int productId, String productN, int category, String details, String description, String address,
 			int price) {
 		this.productN = productN;
@@ -61,6 +71,18 @@ public class Product {
 	// this.image = image;
 	// }
 
+	/**
+	 * Another constructor to create the product with different data.
+	 * @param productId
+	 * @param productN
+	 * @param category
+	 * @param details
+	 * @param description
+	 * @param address
+	 * @param price
+	 * @param owner
+	 * @param phone
+	 */
 	public Product(int productId, String productN, int category, String details, String description, String address,
 			int price, String owner, String phone) {
 		this.productN = productN;

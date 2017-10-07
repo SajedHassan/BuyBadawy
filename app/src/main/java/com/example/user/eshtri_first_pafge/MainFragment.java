@@ -20,6 +20,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+/**
+ * Fetches the data of products from the database.
+ */
 public class MainFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
     private static View containerAvtivity;
@@ -34,6 +37,11 @@ public class MainFragment extends Fragment {
     ArrayList<SectionDataModel> allSampleData;
     private int mPage;
 
+    /**
+     * Creates a new instance of this class with the arguments from the ARG_Page.
+     * @param page number of the page.
+     * @return the new instance.
+     */
     public static MainFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(MainFragment.ARG_PAGE, page);
@@ -67,7 +75,7 @@ public class MainFragment extends Fragment {
             public void processFinish(String json) {
                 Log.v("readAll", json);
                 MainFragment.this.fetchData(json);
-                MainFragment.this.setAllDataAdabter();
+                MainFragment.this.setAllDataAdapter();
             }
         });
 
@@ -123,7 +131,7 @@ public class MainFragment extends Fragment {
             public void processFinish(String json) {
                 Log.v("readAll", json);
                 MainFragment.this.fetchData(json);
-                MainFragment.this.setAllDataAdabter();
+                MainFragment.this.setAllDataAdapter();
             }
         });
 
@@ -131,7 +139,10 @@ public class MainFragment extends Fragment {
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
     }
 
-
+    /**
+     * Responsible of fetching the data from the JSON input.
+     * @param json from the database.
+     */
     public void fetchData(String json) {
         try {
             JSONArray jsonarray = new JSONArray(json);
@@ -233,7 +244,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    public void setAllDataAdabter() {
+    public void setAllDataAdapter() {
 
 
         RecyclerView my_recycler_view = MainFragment.containerAvtivity.findViewById(id.my_recycler_view);

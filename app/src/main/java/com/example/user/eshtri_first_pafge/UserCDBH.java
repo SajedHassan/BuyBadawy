@@ -26,7 +26,6 @@ import java.security.SecureRandom;
 /**
  * Created by user on 9/15/2017.
  */
-
 public class UserCDBH extends AsyncTask<Object, Void, String> {
 
 	final int REGISTER = 0;
