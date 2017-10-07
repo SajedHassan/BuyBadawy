@@ -22,6 +22,7 @@ public class FirstPage extends AppCompatActivity {
     ArrayList<Product> products = new ArrayList<Product>();
 
     User activeUser;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -33,7 +34,7 @@ public class FirstPage extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
@@ -45,7 +46,7 @@ public class FirstPage extends AppCompatActivity {
         String id = sharedPref.getString("id", null);
         if (id != null) {
             int idI = Integer.parseInt(id);
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("id", idI);
             startActivity(intent);
         } else {
@@ -57,9 +58,6 @@ public class FirstPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-
-
 
 
     }
@@ -89,7 +87,7 @@ public class FirstPage extends AppCompatActivity {
 
     public void functionUserYaSajed() {
 
-        EditText nameText = (EditText)findViewById(R.id.name);
+        EditText nameText = (EditText) findViewById(R.id.name);
         String name = nameText.getText().toString();
 
         EditText usernameText = (EditText) findViewById(username);
@@ -99,7 +97,7 @@ public class FirstPage extends AppCompatActivity {
         String number = phone_numberText.getText().toString();
 
         EditText emailText = (EditText) findViewById(R.id.email);
-        String email =  emailText.getText().toString();
+        String email = emailText.getText().toString();
 
         users.add(idCounter, new User(idCounter, name, number, email, username));
         idCounter++;
@@ -124,7 +122,6 @@ public class FirstPage extends AppCompatActivity {
         EditText priceText = (EditText) findViewById(R.id.price);
         String priceString = priceText.getText().toString();
         int price = Integer.parseInt(priceString);
-
 
 
         //products.add(productCounter, new Product(name, price, 0, address, description, details, 1));

@@ -12,7 +12,7 @@ import android.widget.EditText;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity  {
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity  {
 //    private static final String[] DUMMY_CREDENTIALS = new String[]{
 //            "foo@example.com:hello", "bar@example.com:world"
 //    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -45,20 +46,19 @@ public class LoginActivity extends AppCompatActivity  {
 //    private EditText mPasswordView;
 //    private View mProgressView;
 //    private View mLoginFormView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        Button signIn = (Button)findViewById(R.id.button_submit_signIn);
+        Button signIn = (Button) findViewById(R.id.button_submit_signIn);
         signIn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 //DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
 
-                EditText username = (EditText)findViewById(R.id.username_input_for_sign_in);
-                EditText phoneNum = (EditText)findViewById(R.id.phone_num_for_sign_in);
+                EditText username = (EditText) findViewById(R.id.username_input_for_sign_in);
+                EditText phoneNum = (EditText) findViewById(R.id.phone_num_for_sign_in);
 
                 String usernameVal = username.getText().toString().trim();
                 String phoneNumVal = phoneNum.getText().toString().trim();
@@ -71,8 +71,7 @@ public class LoginActivity extends AppCompatActivity  {
 
                 //execute the task
                 //passes the paras to the backgroundTask (param[0],param[1],param[2])
-                backgroundTask.execute(task,usernameVal,phoneNumVal);
-
+                backgroundTask.execute(task, usernameVal, phoneNumVal);
 
 
             }

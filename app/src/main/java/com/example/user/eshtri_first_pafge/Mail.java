@@ -3,6 +3,7 @@ package com.example.user.eshtri_first_pafge;
 /**
  * Created by aya_a_000 on 9/18/2017.
  */
+
 import java.util.Date;
 import java.util.Properties;
 
@@ -38,6 +39,7 @@ public class Mail extends javax.mail.Authenticator {
     private boolean _debuggable;
 
     private Multipart _multipart;
+
     public Mail() {
         _host = "smtp.gmail.com"; // default smtp server
         _port = "587"; // default smtp port
@@ -73,13 +75,13 @@ public class Mail extends javax.mail.Authenticator {
     public boolean send() throws Exception {
         Properties props = _setProperties();
 
-        if(!_user.equals("") && !_pass.equals("") && _to.length > 0 && !_from.equals("") &&
+        if (!_user.equals("") && !_pass.equals("") && _to.length > 0 && !_from.equals("") &&
                 !_subject.equals("") && !_body.equals("")) {
 
 
             Session session = Session.getInstance(props, new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("Eshtery.Badawy@gmail.com","BedouinMafia#2017");
+                    return new PasswordAuthentication("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
                 }
             });
             com.example.user.eshtri_first_pafge.SMTPAuthenticator authentication = new com.example.user.eshtri_first_pafge.SMTPAuthenticator();
@@ -106,7 +108,7 @@ public class Mail extends javax.mail.Authenticator {
             props.put("mail." + protocol + ".auth", "true");
             Transport t = session.getTransport(protocol);
             try {
-                t.connect("smtp.gmail.com","Eshtery.Badawy@gmail.com","BedouinMafia#2017");
+                t.connect("smtp.gmail.com", "Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
                 t.sendMessage(msg, msg.getAllRecipients());
             } finally {
                 t.close();
@@ -128,18 +130,18 @@ public class Mail extends javax.mail.Authenticator {
 
         props.put("mail.smtp.host", _host);
 
-        if(_debuggable) {
+        if (_debuggable) {
             props.put("mail.debug", "true");
         }
 
-        if(_auth) {
+        if (_auth) {
             props.put("mail.smtp.auth", "true");
         }
 
         props.put("mail.smtp.port", _port);
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.ssl.enable",true);
+        props.put("mail.smtp.ssl.enable", true);
 
         return props;
     }
@@ -152,12 +154,15 @@ public class Mail extends javax.mail.Authenticator {
     public void setBody(String _body) {
         this._body = _body;
     }
+
     public void setTo(String[] to) {
         this._to = to;
     }
+
     public void setFrom(String from) {
         this._from = from;
     }
+
     public void setSubject(String subject) {
         this._subject = subject;
     }

@@ -25,7 +25,7 @@ public class MyProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list);
 
-        ListView lay = (ListView)findViewById(R.id.list);
+        ListView lay = (ListView) findViewById(R.id.list);
         ArrayList<Product> products = new ArrayList<Product>();
 
         String json = getIntent().getStringExtra("json");
@@ -60,20 +60,14 @@ public class MyProducts extends AppCompatActivity {
         }
 
 
-
-
 //        if (lay != null)
 //            Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
 
 
-
-
-        lay.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3)
-            {
+                                    long arg3) {
                 //String value = (String)adapter.getItemAtPosition(position);
                 //((TextView)v.findViewById(R.id.productName)).setText("sajed");
                 // assuming string and if you want to get the value on click of list item

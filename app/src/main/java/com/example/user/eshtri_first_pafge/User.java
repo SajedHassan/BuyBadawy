@@ -20,11 +20,7 @@ public class User {
 
     public String username;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public User(){
+    public User() {
         //empty
     }
 
@@ -37,5 +33,9 @@ public class User {
         if (email == null) {
             hasEmail = false;
         }
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

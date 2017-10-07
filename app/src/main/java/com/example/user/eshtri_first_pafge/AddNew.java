@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private static int RESULT_LOAD_IMAGE = 1;
     ImageView imageView;
     String chosenCategory;
-    private static int RESULT_LOAD_IMAGE = 1;
     Spinner spinner;
 
     @Override
@@ -26,7 +26,7 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_product);
 
-         spinner = (Spinner) findViewById(R.id.catList);
+        spinner = (Spinner) findViewById(R.id.catList);
         spinner.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.categories, android.R.layout.simple_spinner_item);
@@ -34,7 +34,6 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-
 
 
         Button add = (Button) findViewById(R.id.button_submit);
@@ -51,7 +50,6 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
 
-
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
@@ -61,17 +59,17 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
             public void onClick(View v) {
                 //new SendMail().execute("");
 
-                TextView name = (TextView)findViewById(R.id.name);
-                TextView details = (TextView)findViewById(R.id.details);
-                TextView properties = (TextView)findViewById(R.id.description);
-                TextView address = (TextView)findViewById(R.id.address);
-                TextView price = (TextView)findViewById(R.id.price);
+                TextView name = (TextView) findViewById(R.id.name);
+                TextView details = (TextView) findViewById(R.id.details);
+                TextView properties = (TextView) findViewById(R.id.description);
+                TextView address = (TextView) findViewById(R.id.address);
+                TextView price = (TextView) findViewById(R.id.price);
 
                 String nameVal = name.getText().toString();
                 String detailsVal = details.getText().toString();
                 String propertiesVal = properties.getText().toString();
                 String addressVal = address.getText().toString();
-                String priceVal =  price.getText().toString();
+                String priceVal = price.getText().toString();
                 String catVal = String.valueOf(spinner.getSelectedItemPosition());
 
                 String task = "add";
@@ -92,6 +90,7 @@ public class AddNew extends AppCompatActivity implements AdapterView.OnItemSelec
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

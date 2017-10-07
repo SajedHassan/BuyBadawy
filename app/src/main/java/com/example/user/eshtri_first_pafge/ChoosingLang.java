@@ -21,10 +21,11 @@ public class ChoosingLang extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -67,8 +68,8 @@ public class ChoosingLang extends AppCompatActivity {
             }
         } else {
             setContentView(R.layout.choosing_language);
-            final Button eng= (Button) findViewById(R.id.engB);
-            final Button arab= (Button) findViewById(R.id.arabB);
+            final Button eng = (Button) findViewById(R.id.engB);
+            final Button arab = (Button) findViewById(R.id.arabB);
             eng.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -110,11 +111,7 @@ public class ChoosingLang extends AppCompatActivity {
         }
 
 
-
-
     }
-
-
 
 
 }

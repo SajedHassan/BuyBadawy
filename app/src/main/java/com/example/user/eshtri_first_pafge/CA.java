@@ -41,7 +41,7 @@ public class CA extends ArrayAdapter<Product> {
     @Override
     public View getView(final int position, @Nullable final View convertView, @NonNull final ViewGroup parent) {
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.custom_adabtor_lay, parent, false);
         }
@@ -59,7 +59,7 @@ public class CA extends ArrayAdapter<Product> {
         nameTextView.setText(currentAndroidFlavor.productN);
         final TextView pn = ((TextView) listItemView.findViewById(R.id.productName));
 
-        ImageButton removeBtn = (ImageButton)listItemView.findViewById(R.id.imageButton);
+        ImageButton removeBtn = (ImageButton) listItemView.findViewById(R.id.imageButton);
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +82,6 @@ public class CA extends ArrayAdapter<Product> {
                 deleteProduct.execute(task, currentAndroidFlavor.productId);
             }
         });
-
 
 
         return listItemView;

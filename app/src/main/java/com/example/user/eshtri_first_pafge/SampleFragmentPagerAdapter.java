@@ -8,7 +8,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
     final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "Tab1", "Tab2" };
+    private String tabTitles[] = new String[]{"Tab1", "Tab2"};
     private int[] tabIcons = new int[]{R.drawable.ic_home_black_24dp, R.drawable.ic_add_shopping_cart_black_24dp};
 
     public SampleFragmentPagerAdapter(FragmentManager fm) {
@@ -38,7 +38,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter implements 
             }
             default: {
                 //unreachable case
-                return  null;
+                return null;
             }
         }
     }

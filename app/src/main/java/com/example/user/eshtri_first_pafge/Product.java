@@ -35,9 +35,11 @@ public class Product {
 
     public Product() {
         //empty
-    };
+    }
 
-    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price) {
+    ;
+
+    public Product(final int productId, final String productN, final int category, final String details, final String description, final String address, final int price) {
         this.productN = productN;
         this.productId = productId;
         this.price = price;
@@ -58,7 +60,7 @@ public class Product {
 //        this.image = image;
 //    }
 
-    public Product (final int productId, final String productN,   final int category, final String details, final String description,  final String address, final int price, final String owner, final String phone) {
+    public Product(final int productId, final String productN, final int category, final String details, final String description, final String address, final int price, final String owner, final String phone) {
         this.productN = productN;
         this.productId = productId;
         this.price = price;

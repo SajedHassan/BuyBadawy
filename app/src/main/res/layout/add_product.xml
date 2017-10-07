@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image4"
-    >
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,40 +16,38 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
 
 
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/addproduct"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#fff"
-                android:textSize="35dp"
-                android:textStyle="bold|italic" />
-
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/addproduct"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#fff"
+                    android:textSize="35dp"
+                    android:textStyle="bold|italic" />
 
 
                 <TextView
                     android:id="@+id/product_name"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="30dp"
                     android:text="@string/productname"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -62,14 +59,14 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:background="@drawable/editbox_style"
                     android:hint="@string/wpn"
                     android:inputType="text"
                     android:maxLength="30"
                     android:maxLines="1"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:singleLine="true"
-                    android:background="@drawable/editbox_style"
                     android:textColor="#000"
                     android:textColorHint="#cccccc" />
 
@@ -92,8 +89,8 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:background="#fff"
-                    android:textAlignment="center"
-                    android:spinnerMode="dropdown">
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center">
 
 
                 </Spinner>
@@ -103,8 +100,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:text="@string/ShortDescription"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#f0e68c"
@@ -115,12 +112,12 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:background="@drawable/editbox_style"
                     android:hint="@string/writedescription"
                     android:inputType="text"
                     android:maxLength="70"
-                    android:background="@drawable/editbox_style"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textColor="#000"
                     android:textColorHint="#cccccc" />
 
@@ -128,8 +125,8 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:text="@string/specsa"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#f0e68c"
@@ -140,11 +137,12 @@
                     android:id="@+id/details"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"                      android:hint="@string/mored"
+                    android:background="@drawable/editbox_style"
+                    android:hint="@string/mored"
                     android:inputType="text"
                     android:maxLength="300"
-                    android:background="@drawable/editbox_style"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textColor="#000"
                     android:textColorHint="#cccccc" />
 
@@ -152,8 +150,8 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:text="@string/address"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#f0e68c"
@@ -164,11 +162,12 @@
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"                      android:hint="@string/writeaddresshere"
+                    android:background="@drawable/editbox_style"
+                    android:hint="@string/writeaddresshere"
                     android:inputType="text"
                     android:maxLength="50"
-                    android:background="@drawable/editbox_style"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:textColor="#000"
                     android:textColorHint="#cccccc" />
 
@@ -176,8 +175,8 @@
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:text="@string/price"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#f0e68c"
@@ -188,13 +187,14 @@
                     android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"                      android:hint="@string/writeproductprice"
+                    android:background="@drawable/editbox_style"
+                    android:hint="@string/writeproductprice"
                     android:inputType="text"
                     android:maxLength="10"
                     android:maxLines="1"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
                     android:singleLine="true"
-                    android:background="@drawable/editbox_style"
                     android:textColor="#000"
                     android:textColorHint="#cccccc" />
 
@@ -203,8 +203,8 @@
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:text="Add Photo"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#f0e68c"
@@ -218,12 +218,13 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:text="Click To Add Photo" />
+
                 <ImageView
                     android:id="@+id/imgView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    ></ImageView>
+                    android:layout_gravity="center_horizontal"></ImageView>
+
                 <Button
                     android:id="@+id/button_submit"
                     android:layout_width="match_parent"
@@ -233,9 +234,9 @@
                     android:onClick="functionUserYaSajed"
                     android:text="@string/addpb" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
 
             </LinearLayout>
 

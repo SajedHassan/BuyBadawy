@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(homeIntent);
     }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),
                             "My products", Toast.LENGTH_SHORT).show();
 
-                } else if ( position == 0) {
+                } else if (position == 0) {
                     MainFragment temp = new MainFragment();
                     temp.backAfterDeletion(MainActivity.this);
                 }
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        ImageButton logoutBtn = (ImageButton)findViewById(R.id.log_out_image);
+        ImageButton logoutBtn = (ImageButton) findViewById(R.id.log_out_image);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
     }

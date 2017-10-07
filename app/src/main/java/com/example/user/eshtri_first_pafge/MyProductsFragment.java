@@ -16,13 +16,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MyProductsFragment extends Fragment{
+public class MyProductsFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-
-    private int mPage;
     ArrayList<Product> products;
     ListView lay;
     View containerActivity;
+    private int mPage;
 
     public static MyProductsFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -42,25 +41,25 @@ public class MyProductsFragment extends Fragment{
     public void onStart() {
         super.onStart();
         products = new ArrayList<Product>();
-        lay = (ListView)containerActivity.findViewById(R.id.list);
+        lay = (ListView) containerActivity.findViewById(R.id.list);
 
         ProductCDBH gettingActiveUserProducts = new ProductCDBH(getActivity(), new AsyncResponse() {
             @Override
             public void processFinish(String json) {
                 Log.v("kaaaaaaaa", json);
-                Log.v("poooo","ka");
+                Log.v("poooo", "ka");
 
-                try  {
-                    Log.v("poooo","0");
+                try {
+                    Log.v("poooo", "0");
                     JSONArray jsonarray = new JSONArray(json);
-                    Log.v("poooo","1");
+                    Log.v("poooo", "1");
                     for (int i = 0; i < jsonarray.length(); i++) {
-                        Log.v("poooo","2");
+                        Log.v("poooo", "2");
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
-                        Log.v("poooo","3");
+                        Log.v("poooo", "3");
 
                         int productId = Integer.parseInt(jsonobject.getString("id"));
-                        Log.v("poooo","4");
+                        Log.v("poooo", "4");
 
                         Log.v("my product id", productId + "");
                         String name = jsonobject.getString("name");
@@ -92,12 +91,10 @@ public class MyProductsFragment extends Fragment{
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
 
 
-        lay.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3)
-            {
+                                    long arg3) {
                 //String value = (String)adapter.getItemAtPosition(position);
                 //((TextView)v.findViewById(R.id.productName)).setText("sajed");
                 // assuming string and if you want to get the value on click of list item
@@ -110,7 +107,7 @@ public class MyProductsFragment extends Fragment{
                 intent.putExtra("det", clickedItem.details);
                 intent.putExtra("pro", clickedItem.description);
                 intent.putExtra("address", clickedItem.address);
-                intent.putExtra("price", clickedItem.price+"");
+                intent.putExtra("price", clickedItem.price + "");
 
                 startActivity(intent);
             }
@@ -127,9 +124,8 @@ public class MyProductsFragment extends Fragment{
 //        final Context ctx = getActivity();
 
 
-
         //Floating Button to open AddNew activity
-        FloatingActionButton addNew = (FloatingActionButton)view.findViewById(R.id.addNewProductFloatingButton);
+        FloatingActionButton addNew = (FloatingActionButton) view.findViewById(R.id.addNewProductFloatingButton);
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,24 +137,12 @@ public class MyProductsFragment extends Fragment{
 //        products.add(new Product("عبايات حريمي", 10, 0, "none", "none", "none", 1));
 
 
-
-
-
-
-
 //        if (lay != null)
 //            Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
 
 
-
-
-
         return view;
     }
-
-
-
-
 
 
 }

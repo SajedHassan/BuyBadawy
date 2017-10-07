@@ -49,7 +49,6 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
         holder.phone = singleItem.getPhone();
 
 
-
         //setting info of each product
 
 

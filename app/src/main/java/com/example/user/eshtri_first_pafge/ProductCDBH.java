@@ -23,35 +23,31 @@ import java.security.SecureRandom;
 
 public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
-    private ProgressDialog progressDialog;
-
-    Bitmap image;
-    boolean progressPermitted = true;
-
     final int ADDNEW = 0;
     final int READ = 1;
     final int READALL = 2;
     final int DELETE = 3;
-
+    public AsyncResponse delegate = null;
+    Bitmap image;
+    boolean progressPermitted = true;
     int actionSelector;
 
     Context context;
+    private ProgressDialog progressDialog;
 
-    public AsyncResponse delegate = null;
-
-    ProductCDBH(Context context, AsyncResponse interfaceObject){
+    ProductCDBH(Context context, AsyncResponse interfaceObject) {
         this.context = context;
         this.delegate = interfaceObject;
     }
 
-    ProductCDBH(Context context, AsyncResponse interfaceObject, Bitmap image){
+    ProductCDBH(Context context, AsyncResponse interfaceObject, Bitmap image) {
         this.context = context;
         this.delegate = interfaceObject;
         this.image = image;
 
     }
 
-    ProductCDBH(Context context,boolean progressPermited, AsyncResponse interfaceObject){
+    ProductCDBH(Context context, boolean progressPermited, AsyncResponse interfaceObject) {
         this.progressPermitted = progressPermited;
         this.context = context;
         this.delegate = interfaceObject;
@@ -62,21 +58,18 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
     protected String doInBackground(Object... params) {
 
 
-
         String urlRegistration = "https://eshtrybadawy.000webhostapp.com/products-addNew.php";
-        String urlLogin  = "https://eshtrybadawy.000webhostapp.com/products-read.php";
+        String urlLogin = "https://eshtrybadawy.000webhostapp.com/products-read.php";
         String urlReadAllForMainActivity = "https://eshtrybadawy.000webhostapp.com/all_products_read.php";
         String urlDelete = "https://eshtrybadawy.000webhostapp.com/products-delete.php";
 
         String task = params[0].toString();
 
-        if(task.equals("add")){
+        if (task.equals("add")) {
 
 //            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 //            image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 //            String encodedImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT);
-
-
 
 
             String owner = params[1].toString();
@@ -93,7 +86,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             String token = bytes.toString();
 
             Log.v("hnaaaaaaa", owner + " , " + name + " , " + cat + " , " + details
-                    + " , " + properties + " , " + address + " , " + price );
+                    + " , " + properties + " , " + address + " , " + price);
 
             try {
 
@@ -103,18 +96,17 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("owner","UTF-8")+"="+URLEncoder.encode(owner,"UTF-8")+"&"
-                        +URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"
-                        +URLEncoder.encode("cat","UTF-8")+"="+URLEncoder.encode(cat,"UTF-8")+"&"
-                        +URLEncoder.encode("details","UTF-8")+"="+URLEncoder.encode(details,"UTF-8")+"&"
-                        +URLEncoder.encode("properties","UTF-8")+"="+URLEncoder.encode(properties,"UTF-8")+"&"
-                        +URLEncoder.encode("address","UTF-8")+"="+URLEncoder.encode(address,"UTF-8")+"&"
+                String myData = URLEncoder.encode("owner", "UTF-8") + "=" + URLEncoder.encode(owner, "UTF-8") + "&"
+                        + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&"
+                        + URLEncoder.encode("cat", "UTF-8") + "=" + URLEncoder.encode(cat, "UTF-8") + "&"
+                        + URLEncoder.encode("details", "UTF-8") + "=" + URLEncoder.encode(details, "UTF-8") + "&"
+                        + URLEncoder.encode("properties", "UTF-8") + "=" + URLEncoder.encode(properties, "UTF-8") + "&"
+                        + URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&"
                         //+URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(encodedImage,"UTF-8")+"&"
-                        +URLEncoder.encode("token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8")+"&"
-                        +URLEncoder.encode("price","UTF-8")+"="+URLEncoder.encode(price,"UTF-8");
-
+                        + URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") + "&"
+                        + URLEncoder.encode("price", "UTF-8") + "=" + URLEncoder.encode(price, "UTF-8");
 
 
                 bufferedWriter.write(myData);
@@ -124,11 +116,11 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -139,7 +131,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 actionSelector = ADDNEW;
 
-                return token + "," +dataResponse+ "," +owner+ "," +name+ "," +cat+ "," +details+ "," +properties+ "," +address+ "," +price;
+                return token + "," + dataResponse + "," + owner + "," + name + "," + cat + "," + details + "," + properties + "," + address + "," + price;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -147,7 +139,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             }
 
         }
-        if(task.equals("read")){
+        if (task.equals("read")) {
             String activeUser = params[1].toString();
             try {
                 URL url = new URL(urlLogin);
@@ -158,9 +150,9 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //send the email and password to the database
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("activeUser","UTF-8")+"="+URLEncoder.encode(activeUser,"UTF-8");
+                String myData = URLEncoder.encode("activeUser", "UTF-8") + "=" + URLEncoder.encode(activeUser, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -168,11 +160,11 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //get response from the database
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -184,7 +176,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 actionSelector = READ;
                 //Log.v("hnaaaaaaa", dataResponse);
-                return  dataResponse;
+                return dataResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -203,9 +195,9 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //send the email and password to the database
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("activeUser","UTF-8")+"="+URLEncoder.encode(activeUser,"UTF-8");
+                String myData = URLEncoder.encode("activeUser", "UTF-8") + "=" + URLEncoder.encode(activeUser, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -213,11 +205,11 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //get response from the database
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -229,7 +221,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 actionSelector = READALL;
                 //Log.v("hnaaaaaaa", dataResponse);
-                return  dataResponse;
+                return dataResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -250,9 +242,9 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //send the email and password to the database
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("productID","UTF-8")+"="+URLEncoder.encode(productID,"UTF-8");
+                String myData = URLEncoder.encode("productID", "UTF-8") + "=" + URLEncoder.encode(productID, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -260,11 +252,11 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 //get response from the database
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -276,7 +268,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
                 actionSelector = DELETE;
                 Log.v("hnaaaaaaa", dataResponse);
-                return  dataResponse;
+                return dataResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -303,7 +295,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        if(actionSelector == ADDNEW) {
+        if (actionSelector == ADDNEW) {
 
 
             String[] params = s.split("[,]");
@@ -317,22 +309,21 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             String address = params[7];
             String price = params[8];
 
-            String link = "https://eshtrybadawy.000webhostapp.com/products-confirmation.php?sentToken="+token+"&id="+id;
+            String link = "https://eshtrybadawy.000webhostapp.com/products-confirmation.php?sentToken=" + token + "&id=" + id;
 
             SendMail activationMail = new SendMail();
             activationMail.execute(link, owner, name, cat, details, properties, address, price);
 
 
-
             Intent intent = new Intent(context, MainActivity.class);
             //display("Login Failed...", "That email and password do not match our records :(.");
-            if(progressDialog.isShowing()) {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             context.startActivity(intent);
-        } else if(actionSelector == READ){
+        } else if (actionSelector == READ) {
 
-            if(progressDialog.isShowing()) {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             delegate.processFinish(s);
@@ -342,20 +333,20 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
 
         } else if (actionSelector == READALL) {
-            if(progressDialog != null && progressDialog.isShowing()) {
+            if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             delegate.processFinish(s);
         } else if (actionSelector == DELETE) {
-            if(progressDialog.isShowing()) {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             delegate.processFinish(s);
         } else {
-            if(progressDialog.isShowing()) {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            display("Can't get the products...","Something weird happened :(.");
+            display("Can't get the products...", "Something weird happened :(.");
         }
     }
 
@@ -364,7 +355,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
         super.onProgressUpdate(values);
     }
 
-    public void display(String title, String message){
+    public void display(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -412,10 +403,10 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
             m.setFrom("Eshtery.Badawy@gmail.com");
             m.setSubject("Eshtery Badawy | New Product Request");
 
-            m.setBody("A user with id: " +owner+ " has added a product with name: " + name + " and category: " + cat + " with details: " + details + " properties: " + properties + " and address: " + address + " price: " + price + "$    to confirm it click the link below: " + link);
+            m.setBody("A user with id: " + owner + " has added a product with name: " + name + " and category: " + cat + " with details: " + details + " properties: " + properties + " and address: " + address + " price: " + price + "$    to confirm it click the link below: " + link);
 
             try {
-                if(m.send()) {
+                if (m.send()) {
                     //Toast.makeText(AddNew.this, "Request Was Sent Successfully.", Toast.LENGTH_LONG).show();
                     return 1;
                 } else {
@@ -423,7 +414,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
                     return 0;
 
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Log.e("MailApp", "Could not send email", e);
             }
             return null;

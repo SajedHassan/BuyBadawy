@@ -27,15 +27,13 @@ import java.security.SecureRandom;
 
 public class UserCDBH extends AsyncTask<Object, Void, String> {
 
-    private ProgressDialog progressDialog;
     final int REGISTER = 0;
     final int LOGIN = 1;
-
     int actionSelector;
-
     Context context;
+    private ProgressDialog progressDialog;
 
-    UserCDBH(Context context){
+    UserCDBH(Context context) {
         this.context = context;
     }
 
@@ -44,10 +42,10 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
     protected String doInBackground(Object... params) {
 
         String urlRegistration = "https://eshtrybadawy.000webhostapp.com/LoginAndRegister-register.php";
-        String urlLogin  = "https://eshtrybadawy.000webhostapp.com/LoginAndRegister-login.php";
+        String urlLogin = "https://eshtrybadawy.000webhostapp.com/LoginAndRegister-login.php";
         String task = params[0].toString();
 
-        if(task.equals("register")){
+        if (task.equals("register")) {
             String regName = params[1].toString();
             String regUsername = params[2].toString();
             String regPhone = params[3].toString();
@@ -58,7 +56,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             random.nextBytes(bytes);
             String token = bytes.toString();
 
-            Log.v("hnaaaaaaa", regName + " , " + regUsername + " , " + regPhone+ " , " + regEmail);
+            Log.v("hnaaaaaaa", regName + " , " + regUsername + " , " + regPhone + " , " + regEmail);
 
             try {
 
@@ -68,14 +66,13 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("identifier_name","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_username","UTF-8")+"="+URLEncoder.encode(regUsername,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_phone","UTF-8")+"="+URLEncoder.encode(regPhone,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_token","UTF-8")+"="+URLEncoder.encode(token,"UTF-8");
-
+                String myData = URLEncoder.encode("identifier_name", "UTF-8") + "=" + URLEncoder.encode(regName, "UTF-8") + "&"
+                        + URLEncoder.encode("identifier_username", "UTF-8") + "=" + URLEncoder.encode(regUsername, "UTF-8") + "&"
+                        + URLEncoder.encode("identifier_phone", "UTF-8") + "=" + URLEncoder.encode(regPhone, "UTF-8") + "&"
+                        + URLEncoder.encode("identifier_email", "UTF-8") + "=" + URLEncoder.encode(regEmail, "UTF-8") + "&"
+                        + URLEncoder.encode("identifier_token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8");
 
 
                 bufferedWriter.write(myData);
@@ -85,11 +82,11 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -108,7 +105,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             }
 
         }
-        if(task.equals("login")){
+        if (task.equals("login")) {
             String loginUsername = params[1].toString();
             String loginPhone = params[2].toString();
             try {
@@ -120,10 +117,10 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
                 //send the email and password to the database
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("identifier_loginUsername","UTF-8")+"="+URLEncoder.encode(loginUsername,"UTF-8")+"&"
-                        +URLEncoder.encode("identifier_loginPhone","UTF-8")+"="+URLEncoder.encode(loginPhone,"UTF-8");
+                String myData = URLEncoder.encode("identifier_loginUsername", "UTF-8") + "=" + URLEncoder.encode(loginUsername, "UTF-8") + "&"
+                        + URLEncoder.encode("identifier_loginPhone", "UTF-8") + "=" + URLEncoder.encode(loginPhone, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -131,11 +128,11 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
                 //get response from the database
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
@@ -146,7 +143,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                 System.out.println(dataResponse);
 
                 actionSelector = LOGIN;
-                return  dataResponse + "," + loginUsername + "," + loginPhone;
+                return dataResponse + "," + loginUsername + "," + loginPhone;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -155,7 +152,8 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             }
         }
 
-        return null;    }
+        return null;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -169,19 +167,19 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        if(actionSelector == REGISTER) {
+        if (actionSelector == REGISTER) {
             String[] params = s.split("[,]");
             String token = params[0];
             String id = params[1];
             String email = params[2];
             SendMail activationMail = new SendMail();
-            activationMail.execute("https://eshtrybadawy.000webhostapp.com/LoginAndRegister-activation.php?sentToken="+token+"&id="+id, email);
+            activationMail.execute("https://eshtrybadawy.000webhostapp.com/LoginAndRegister-activation.php?sentToken=" + token + "&id=" + id, email);
             Intent intent = new Intent(context, FirstPage.class);
-            if(progressDialog.isShowing()) {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
             context.startActivity(intent);
-        } else if(actionSelector == LOGIN){
+        } else if (actionSelector == LOGIN) {
             String test = "false";
             int id;
             Log.v("hnaaaaaaaaaaaaaaaaaa", s);
@@ -189,12 +187,12 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             test = serverResponse[0];
 
 
-            if(test.equals("true")){
+            if (test.equals("true")) {
                 id = Integer.parseInt(serverResponse[1]);
                 String userName = serverResponse[2];
                 String phone = serverResponse[3];
 
-                Intent intent = new Intent(context,MainActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra("id", id);
 
                 SharedPreferences sharedPref = context.getSharedPreferences("users", Context.MODE_PRIVATE);
@@ -206,22 +204,22 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
 
                 editor.apply();
 
-                if(progressDialog.isShowing()) {
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
 
                 context.startActivity(intent);
-            }else{
-                if(progressDialog.isShowing()) {
+            } else {
+                if (progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
                 display("Login Failed...", "That email and password do not match our records :(.");
             }
-        }else{
-            if(progressDialog.isShowing()) {
+        } else {
+            if (progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
-            display("Login Failed...","Something weird happened :(.");
+            display("Login Failed...", "Something weird happened :(.");
         }
     }
 
@@ -230,7 +228,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
         super.onProgressUpdate(values);
     }
 
-    public void display(String title, String message){
+    public void display(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -274,7 +272,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
             m.setBody("<h1>press on the link to activate your account </h1>" + link);
 
             try {
-                if(m.send()) {
+                if (m.send()) {
                     //Toast.makeText(AddNew.this, "Request Was Sent Successfully.", Toast.LENGTH_LONG).show();
                     return 1;
                 } else {
@@ -282,7 +280,7 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
                     return 0;
 
                 }
-            } catch(Exception e) {
+            } catch (Exception e) {
                 Log.e("MailApp", "Could not send email", e);
             }
             return null;

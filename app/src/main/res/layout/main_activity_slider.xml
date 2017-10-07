@@ -10,26 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="4"
-            android:gravity="right"
-            android:layout_height="match_parent">
+            android:gravity="right">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="20sp"
-                android:text="Log out"/>
+                android:text="Log out"
+                android:textSize="20sp" />
         </LinearLayout>
+
         <ImageButton
             android:id="@+id/log_out_image"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="40dp"
+            android:layout_weight="2"
             app:srcCompat="@mipmap/logout_arrow" />
     </LinearLayout>
-
 
 
     <android.support.v4.view.ViewPager
@@ -41,13 +43,13 @@
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
-        app:pstsShouldExpand="true"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:textSize="14sp"
         android:textColor="#000000"
+        android:textSize="14sp"
         app:pstsDividerColor="#2d475a"
         app:pstsIndicatorColor="#2d475a"
+        app:pstsShouldExpand="true"
         app:pstsTabPaddingLeftRight="14dp" />
 
 </LinearLayout>

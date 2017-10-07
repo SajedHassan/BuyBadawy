@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProductPreview extends AppCompatActivity {
     private Bitmap bmp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +47,14 @@ public class ProductPreview extends AppCompatActivity {
 
 
         // F stands for field
-        final ImageView imageView = (ImageView)findViewById(R.id.myp_roduct_image);
-        TextView nameF = (TextView)findViewById(R.id.product_name);
-        TextView phoneF = (TextView)findViewById(R.id.num);
-        TextView addressF = (TextView)findViewById(R.id.address);
-        TextView priceF = (TextView)findViewById(R.id.price);
-        TextView detF = (TextView)findViewById(R.id.details);
-        TextView proF = (TextView)findViewById(R.id.dec);
-        TextView ownerF = (TextView)findViewById(R.id.owner);
+        final ImageView imageView = (ImageView) findViewById(R.id.myp_roduct_image);
+        TextView nameF = (TextView) findViewById(R.id.product_name);
+        TextView phoneF = (TextView) findViewById(R.id.num);
+        TextView addressF = (TextView) findViewById(R.id.address);
+        TextView priceF = (TextView) findViewById(R.id.price);
+        TextView detF = (TextView) findViewById(R.id.details);
+        TextView proF = (TextView) findViewById(R.id.dec);
+        TextView ownerF = (TextView) findViewById(R.id.owner);
 
 
 //        byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
@@ -110,10 +111,6 @@ public class ProductPreview extends AppCompatActivity {
         proF.setText(pro);
         priceF.setText("Price: " + price);
         ownerF.setText("Owner: " + owner);
-
-
-
-
 
 
     }

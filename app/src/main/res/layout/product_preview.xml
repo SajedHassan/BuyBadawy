@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image4"
@@ -16,161 +15,151 @@
         android:orientation="vertical">
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-
-
-
-
-        <TextView
-            android:id="@+id/product_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/productname"
-            android:textSize="22sp"
-            android:textColor="#fff"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"/>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:id="@+id/myp_roduct_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="center_horizontal"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/contactInfos"
-                android:layout_width="match_parent"
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/contactinfo"
-                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="@string/productname"
                 android:textColor="#fff"
+                android:textSize="22sp" />
 
-                />
 
-            <TextView
-                android:id="@+id/owner"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/contactinfo"
-                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/myp_roduct_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    app:srcCompat="@mipmap/ic_launcher" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/contactInfos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/contactinfo"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/owner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/contactinfo"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/phonenumber"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/address"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="115$"
+                        android:textColor="#fff"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#d9d9d9"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/decL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ShortDescription"
+                android:textColor="#f0e68c"
+                android:textSize="22sp" />
+
+
+            <TextView
+                android:id="@+id/dec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
                 android:textColor="#fff"
+                android:textColorHint="#fff" />
 
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#d9d9d9"
+                android:orientation="horizontal" />
+
 
             <TextView
-                android:id="@+id/num"
+                android:id="@+id/detailsL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/phonenumber"
+                android:text="@string/specsa"
+                android:textColor="#f0e68c"
+                android:textSize="22sp" />
+
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
                 android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="@string/address"
-                android:textSize="18sp"
-                android:textColor="#fff"/>
-
-
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="115$"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#d9d9d9"
-        android:orientation="horizontal"/>
-
-    <TextView
-        android:id="@+id/decL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ShortDescription"
-        android:textSize="22sp"
-        android:textColor="#f0e68c"
-        />
-
-
-    <TextView
-        android:id="@+id/dec"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColorHint="#fff"
-        android:textColor="#fff"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#d9d9d9"
-        android:orientation="horizontal"/>
-
-
-        <TextView
-            android:id="@+id/detailsL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/specsa"
-            android:textSize="22sp"
-            android:textColor="#f0e68c"
-            />
-
-
-        <TextView
-            android:id="@+id/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColorHint="#fff"
-            android:textColor="#fff"/>
+                android:textColorHint="#fff" />
 
 
         </LinearLayout>

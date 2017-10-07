@@ -2,29 +2,29 @@
 
     <string-array name="categories">
         <item>Clothes</item>
-            <item>Carpets</item>
-            <item>Herbs</item>
-            <item>Food</item>
+        <item>Carpets</item>
+        <item>Herbs</item>
+        <item>Food</item>
         <item>Tours</item>
         <item>Others</item>
 
     </string-array>
 
-    <string name ="addproduct">اضافة منتج</string>
+    <string name="addproduct">اضافة منتج</string>
     <string name="app_name">Eshtery Badawy</string>
     <string name="action_settings">اعدادات</string>
     <string name="productname">اسم المنتج</string>
-    <string name ="choosecategory">اختر النوع</string>
+    <string name="choosecategory">اختر النوع</string>
     <string name="wpn">اكتب مواصفات المنتج</string>
     <string name="ShortDescription">نبذه عن المنتج</string>
     <string name="wdh">اكتب الوصف هنا</string>
     <string name="email">بريد اكتروني</string>
     <string name="optionalEmail">البريد الالكتروني (اختياري)</string>
     <string name="specs">خصائص</string>
-    <string name ="wd_h">اكتب الخصائص هنا</string>
+    <string name="wd_h">اكتب الخصائص هنا</string>
     <string name="country">الدوله </string>
     <string name="wsp">اكتب الخصائص هنا</string>
-    <string name= "address">العنوان</string>
+    <string name="address">العنوان</string>
     <string name="writeaddresshere">اكتب العنوان هنا</string>
     <string name="addpb">اضف منتج</string>
     <string name="specsa">خصائص</string>

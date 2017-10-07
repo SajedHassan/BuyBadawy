@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,9 +12,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,19 +30,20 @@
             android:id="@+id/myProductsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/myproducts"
-            android:layout_weight="1"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="@string/myproducts"
             android:textSize="20dp" />
+
         <Button
             android:id="@+id/addprod"
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/addpb"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="@string/addpb"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -60,6 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
 
             android:layout_width="match_parent"
@@ -100,8 +99,6 @@
                 android:id="@+id/All"
                 style="@style/CategoryStyle"
                 android:text="@string/All" />
-
-
 
 
         </LinearLayout>

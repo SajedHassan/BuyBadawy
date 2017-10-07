@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-
-    private int mPage;
     static private View containerAvtivity;
     ArrayList<Product> clothes;
     ArrayList<Product> carpets;
@@ -28,13 +26,10 @@ public class MainFragment extends Fragment {
     ArrayList<Product> food;
     ArrayList<Product> tours;
     ArrayList<Product> others;
-
-
     ArrayList<ArrayList<Product>> allCategoriesProducts;
-
     ListView lay;
-
     ArrayList<SectionDataModel> allSampleData;
+    private int mPage;
 
     public static MainFragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -49,7 +44,6 @@ public class MainFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
     }
-
 
 
     @Override
@@ -76,9 +70,6 @@ public class MainFragment extends Fragment {
 
         String task = "readAll";
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
-
-
-
 
 
 //        lay.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -124,7 +115,7 @@ public class MainFragment extends Fragment {
         others = new ArrayList<Product>();
         allCategoriesProducts = new ArrayList<ArrayList<Product>>();
 
-        ProductCDBH gettingActiveUserProducts = new ProductCDBH(context,true ,new AsyncResponse() {
+        ProductCDBH gettingActiveUserProducts = new ProductCDBH(context, true, new AsyncResponse() {
             @Override
             public void processFinish(String json) {
                 Log.v("readAll", json);
@@ -136,8 +127,6 @@ public class MainFragment extends Fragment {
         String task = "readAll";
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
     }
-
-
 
 
     public void fetchData(String json) {
@@ -197,7 +186,6 @@ public class MainFragment extends Fragment {
             allCategoriesProducts.add(others);
 
 
-
         } catch (Exception e) {
             // TODO
         }
@@ -255,9 +243,8 @@ public class MainFragment extends Fragment {
 
         }
     }
+
     public void setAllDataAdabter() {
-
-
 
 
         RecyclerView my_recycler_view = (RecyclerView) containerAvtivity.findViewById(R.id.my_recycler_view);
