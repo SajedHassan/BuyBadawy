@@ -5,5 +5,5 @@ package com.example.user.eshtri_first_pafge;
  */
 
 public interface AsyncResponse {
-    void processFinish(String output);
+	void processFinish(String output);
 }

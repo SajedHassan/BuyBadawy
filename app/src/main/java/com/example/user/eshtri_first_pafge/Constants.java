@@ -5,5 +5,5 @@ package com.example.user.eshtri_first_pafge;
  */
 
 public class Constants {
-    public static boolean closeAppRequested = false;
+	public static boolean closeAppRequested;
 }

@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.user.eshtri_first_pafge.R.id;
+import com.example.user.eshtri_first_pafge.R.layout;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 
 public class MainFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-    static private View containerAvtivity;
+    private static View containerAvtivity;
     ArrayList<Product> clothes;
     ArrayList<Product> carpets;
     ArrayList<Product> herbs;
@@ -33,7 +36,7 @@ public class MainFragment extends Fragment {
 
     public static MainFragment newInstance(int page) {
         Bundle args = new Bundle();
-        args.putInt(ARG_PAGE, page);
+        args.putInt(MainFragment.ARG_PAGE, page);
         MainFragment fragment = new MainFragment();
         fragment.setArguments(args);
         return fragment;
@@ -42,7 +45,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(ARG_PAGE);
+        this.mPage = this.getArguments().getInt(MainFragment.ARG_PAGE);
     }
 
 
@@ -51,20 +54,20 @@ public class MainFragment extends Fragment {
         super.onStart();
 
 
-        clothes = new ArrayList<Product>();
-        carpets = new ArrayList<Product>();
-        herbs = new ArrayList<Product>();
-        food = new ArrayList<Product>();
-        tours = new ArrayList<Product>();
-        others = new ArrayList<Product>();
-        allCategoriesProducts = new ArrayList<ArrayList<Product>>();
+        this.clothes = new ArrayList<Product>();
+        this.carpets = new ArrayList<Product>();
+        this.herbs = new ArrayList<Product>();
+        this.food = new ArrayList<Product>();
+        this.tours = new ArrayList<Product>();
+        this.others = new ArrayList<Product>();
+        this.allCategoriesProducts = new ArrayList<ArrayList<Product>>();
 
-        ProductCDBH gettingActiveUserProducts = new ProductCDBH(getActivity(), new AsyncResponse() {
+        ProductCDBH gettingActiveUserProducts = new ProductCDBH(this.getActivity(), new AsyncResponse() {
             @Override
             public void processFinish(String json) {
                 Log.v("readAll", json);
-                fetchData(json);
-                setAllDataAdabter();
+                MainFragment.this.fetchData(json);
+                MainFragment.this.setAllDataAdabter();
             }
         });
 
@@ -92,9 +95,9 @@ public class MainFragment extends Fragment {
     // Set the associated text for the title
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main, container, false);
-        containerAvtivity = view;
-        Toast.makeText(getActivity(), "Welcome back", Toast.LENGTH_SHORT).show();
+        View view = inflater.inflate(layout.activity_main, container, false);
+        MainFragment.containerAvtivity = view;
+        Toast.makeText(this.getActivity(), "Welcome back", Toast.LENGTH_SHORT).show();
 
         return view;
     }
@@ -102,25 +105,25 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "back", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this.getActivity(), "back", Toast.LENGTH_SHORT).show();
     }
 
-    public void backAfterDeletion(final Context context) {
+    public void backAfterDeletion(Context context) {
         //repeated code from onstart
-        clothes = new ArrayList<Product>();
-        carpets = new ArrayList<Product>();
-        herbs = new ArrayList<Product>();
-        food = new ArrayList<Product>();
-        tours = new ArrayList<Product>();
-        others = new ArrayList<Product>();
-        allCategoriesProducts = new ArrayList<ArrayList<Product>>();
+        this.clothes = new ArrayList<Product>();
+        this.carpets = new ArrayList<Product>();
+        this.herbs = new ArrayList<Product>();
+        this.food = new ArrayList<Product>();
+        this.tours = new ArrayList<Product>();
+        this.others = new ArrayList<Product>();
+        this.allCategoriesProducts = new ArrayList<ArrayList<Product>>();
 
         ProductCDBH gettingActiveUserProducts = new ProductCDBH(context, true, new AsyncResponse() {
             @Override
             public void processFinish(String json) {
                 Log.v("readAll", json);
-                fetchData(json);
-                setAllDataAdabter();
+                MainFragment.this.fetchData(json);
+                MainFragment.this.setAllDataAdabter();
             }
         });
 
@@ -145,89 +148,75 @@ public class MainFragment extends Fragment {
                 int price = Integer.parseInt(jsonobject.getString("price"));
 
                 switch (cat) {
-                    case 0: {
-                        clothes.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 0:
+                        this.clothes.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    case 1: {
-                        carpets.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 1:
+                        this.carpets.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    case 2: {
-                        herbs.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 2:
+                        this.herbs.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    case 3: {
-                        food.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 3:
+                        this.food.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    case 4: {
-                        tours.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 4:
+                        this.tours.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    case 5: {
-                        others.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                    case 5:
+                        this.others.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
                         break;
-                    }
-                    default: {
+                    default:
                         //unreachable case
-                    }
                 }
 
                 Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
 
 
             }
-            allCategoriesProducts.add(clothes);
-            allCategoriesProducts.add(carpets);
-            allCategoriesProducts.add(herbs);
-            allCategoriesProducts.add(food);
-            allCategoriesProducts.add(tours);
-            allCategoriesProducts.add(others);
+            this.allCategoriesProducts.add(this.clothes);
+            this.allCategoriesProducts.add(this.carpets);
+            this.allCategoriesProducts.add(this.herbs);
+            this.allCategoriesProducts.add(this.food);
+            this.allCategoriesProducts.add(this.tours);
+            this.allCategoriesProducts.add(this.others);
 
 
         } catch (Exception e) {
             // TODO
         }
 
-        allSampleData = new ArrayList<SectionDataModel>();
+        this.allSampleData = new ArrayList<SectionDataModel>();
 
         for (int i = 0; i < 6; i++) {
 
-            ArrayList<Product> section = allCategoriesProducts.get(i);
+            ArrayList<Product> section = this.allCategoriesProducts.get(i);
             int numOfItemsInSection = section.size();
 
             if (numOfItemsInSection > 0) {
                 SectionDataModel dm = new SectionDataModel();
 
                 switch (i) {
-                    case 0: {
+                    case 0:
                         dm.setHeaderTitle("Clothes");
                         break;
-                    }
-                    case 1: {
+                    case 1:
                         dm.setHeaderTitle("Carpets");
                         break;
-                    }
-                    case 2: {
+                    case 2:
                         dm.setHeaderTitle("Herbs");
                         break;
-                    }
-                    case 3: {
+                    case 3:
                         dm.setHeaderTitle("Food");
                         break;
-                    }
-                    case 4: {
+                    case 4:
                         dm.setHeaderTitle("Tours");
                         break;
-                    }
-                    case 5: {
+                    case 5:
                         dm.setHeaderTitle("Others");
                         break;
-                    }
-                    default: {
+                    default:
                         //unreachable case
-                    }
                 }
 
                 ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
@@ -237,7 +226,7 @@ public class MainFragment extends Fragment {
 
                 dm.setAllItemsInSection(singleItem);
 
-                allSampleData.add(dm);
+                this.allSampleData.add(dm);
 
             }
 
@@ -247,13 +236,13 @@ public class MainFragment extends Fragment {
     public void setAllDataAdabter() {
 
 
-        RecyclerView my_recycler_view = (RecyclerView) containerAvtivity.findViewById(R.id.my_recycler_view);
+        RecyclerView my_recycler_view = MainFragment.containerAvtivity.findViewById(id.my_recycler_view);
 
         my_recycler_view.setHasFixedSize(true);
 
-        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(getActivity(), allSampleData);
+        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(this.getActivity(), this.allSampleData);
 
-        my_recycler_view.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        my_recycler_view.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
 
         my_recycler_view.setAdapter(adapter);
     }

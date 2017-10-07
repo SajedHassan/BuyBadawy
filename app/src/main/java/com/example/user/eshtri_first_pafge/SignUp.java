@@ -3,9 +3,12 @@ package com.example.user.eshtri_first_pafge;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.user.eshtri_first_pafge.R.id;
+import com.example.user.eshtri_first_pafge.R.layout;
 
 /**
  * Created by user on 8/29/2017.
@@ -13,158 +16,156 @@ import android.widget.EditText;
 
 public class SignUp extends AppCompatActivity {
 
-    private boolean nameValid = true;
-    private boolean userNameValid = true;
-    private boolean emailValid = true;
-    private boolean phoneValid = true;
+	private boolean nameValid = true;
+	private boolean userNameValid = true;
+	private boolean emailValid = true;
+	private boolean phoneValid = true;
 
-    private EditText userName;
-    private String usernameVal;
-    private EditText phone;
-    private String phoneVal;
-    private EditText name;
-    private String nameVal;
-    private EditText email;
-    private String emailVal;
-    private String emailPattern;
-    private String userNamePattern;
-    private String namePattern;
-    private String phonePattern;
+	private EditText userName;
+	private String usernameVal;
+	private EditText phone;
+	private String phoneVal;
+	private EditText name;
+	private String nameVal;
+	private EditText email;
+	private String emailVal;
+	private String emailPattern;
+	private String userNamePattern;
+	private String namePattern;
+	private String phonePattern;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_form);
-        name = (EditText) findViewById(R.id.name);
-        userName = (EditText) findViewById(R.id.username);
-        phone = (EditText) findViewById(R.id.phone);
-        email = (EditText) findViewById(R.id.email);
-        emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        userNamePattern = "[a-zA-Z0-9_-]{3,20}";
-        namePattern = "[\\p{L} ]+";
-        phonePattern = "[0][1][0-9]{9}";
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.setContentView(layout.sign_up_form);
+		this.name = (EditText) this.findViewById(id.name);
+		this.userName = (EditText) this.findViewById(id.username);
+		this.phone = (EditText) this.findViewById(id.phone);
+		this.email = (EditText) this.findViewById(id.email);
+		this.emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+		this.userNamePattern = "[a-zA-Z0-9_-]{3,20}";
+		this.namePattern = "[\\p{L} ]+";
+		this.phonePattern = "[0][1][0-9]{9}";
 
+		Button signUp = (Button) this.findViewById(id.signUpB);
 
-        Button signUp = (Button) findViewById(R.id.signUpB);
+		signUp.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				SignUp.this.emailVal = SignUp.this.email.getText().toString().trim();
+				SignUp.this.usernameVal = SignUp.this.userName.getText().toString().trim();
+				SignUp.this.phoneVal = SignUp.this.phone.getText().toString().trim();
+				SignUp.this.nameVal = SignUp.this.name.getText().toString().trim();
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emailVal = email.getText().toString().trim();
-                usernameVal = userName.getText().toString().trim();
-                phoneVal = phone.getText().toString().trim();
-                nameVal = name.getText().toString().trim();
+				SignUp.this.validateInput();
 
-                validateInput();
+				if (SignUp.this.emailValid && SignUp.this.userNameValid && SignUp.this.phoneValid
+						&& SignUp.this.nameValid) {
+					// DataBaseHandelerForAccounts db = new
+					// DataBaseHandelerForAccounts(getBaseContext());
+					// db.addUser(new User(0, nameVal, phoneVal, emailVal,
+					// usernameVal));
+					String task = "register";
+					UserCDBH backgroundTask = new UserCDBH(SignUp.this);
+					backgroundTask.execute(task, SignUp.this.nameVal, SignUp.this.usernameVal, SignUp.this.phoneVal,
+							SignUp.this.emailVal);
+					// finish();
+				}
 
+			}
+		});
 
-                if (emailValid && userNameValid && phoneValid && nameValid) {
-//                   DataBaseHandelerForAccounts db = new DataBaseHandelerForAccounts(getBaseContext());
-//                   db.addUser(new User(0, nameVal, phoneVal, emailVal, usernameVal));
-                    String task = "register";
-                    UserCDBH backgroundTask = new UserCDBH(SignUp.this);
-                    backgroundTask.execute(task, nameVal, usernameVal, phoneVal, emailVal);
-                    //finish();
-                }
+	}
 
+	protected void validateInput() {
 
-            }
-        });
+		this.validateName();
 
-    }
+		this.validateUserName();
 
+		this.validatePhone();
 
-    protected void validateInput() {
+		this.validateEmail();
+	}
 
-        validateName();
+	protected void validateEmail() {
 
-        validateUserName();
+		if (this.emailVal.length() > 0 && !this.emailVal.matches(this.emailPattern)) {
 
-        validatePhone();
+			this.email.setError("Invalid Email Address !");
+			this.email.setText("");
 
-        validateEmail();
-    }
+			this.emailValid = false;
 
-    protected void validateEmail() {
+		} else {
+			this.email.setError(null);
+			this.emailValid = true;
+		}
 
-        if (emailVal.length() > 0 && !emailVal.matches(emailPattern)) {
+	}
 
-            email.setError("Invalid Email Address !");
-            email.setText("");
+	protected void validateName() {
+		this.email.setText(this.nameVal);
+		if (this.nameVal.length() == 0) {
 
-            emailValid = false;
+			this.name.setError("Missing Name !");
+			this.name.setText("");
 
-        } else {
-            email.setError(null);
-            emailValid = true;
-        }
+			this.nameValid = false;
 
-    }
+		} else if (!this.nameVal.matches(this.namePattern)) {
+			this.name.setError("Invalid Name !");
+			this.name.setText("");
 
-    protected void validateName() {
-        email.setText(nameVal);
-        if (nameVal.length() == 0) {
+			this.nameValid = false;
+		} else {
+			this.name.setError(null);
+			this.nameValid = true;
+		}
 
-            name.setError("Missing Name !");
-            name.setText("");
+	}
 
-            nameValid = false;
+	protected void validateUserName() {
+		if (this.usernameVal.length() == 0) {
 
-        } else if (!nameVal.matches(namePattern)) {
-            name.setError("Invalid Name !");
-            name.setText("");
+			this.userName.setError("Missing Username !");
+			this.userName.setText("");
+			this.userName.setHint("");
 
-            nameValid = false;
-        } else {
-            name.setError(null);
-            nameValid = true;
-        }
+			this.userNameValid = false;
 
-    }
+		} else if (!this.usernameVal.matches(this.userNamePattern)) {
+			this.userName.setError("Invalid Username !");
+			this.userName.setText("");
+			this.userName.setHint("");
 
-    protected void validateUserName() {
-        if (usernameVal.length() == 0) {
+			this.userNameValid = false;
+		} else {
+			this.userName.setError(null);
+			this.userNameValid = true;
+		}
 
-            userName.setError("Missing Username !");
-            userName.setText("");
-            userName.setHint("");
+	}
 
-            userNameValid = false;
+	protected void validatePhone() {
 
-        } else if (!usernameVal.matches(userNamePattern)) {
-            userName.setError("Invalid Username !");
-            userName.setText("");
-            userName.setHint("");
+		if (this.phoneVal.length() == 0) {
 
-            userNameValid = false;
-        } else {
-            userName.setError(null);
-            userNameValid = true;
-        }
+			this.phone.setError("Missing Phone Number !");
+			this.phone.setText("");
 
-    }
+			this.phoneValid = false;
 
-    protected void validatePhone() {
+		} else if (!this.phoneVal.matches(this.phonePattern)) {
+			this.phone.setError("Invalid Phone Number !");
+			this.phone.setText("");
 
-        if (phoneVal.length() == 0) {
+			this.phoneValid = false;
+		} else {
+			this.phone.setError(null);
+			this.phoneValid = true;
+		}
 
-            phone.setError("Missing Phone Number !");
-            phone.setText("");
-
-            phoneValid = false;
-
-        } else if (!phoneVal.matches(phonePattern)) {
-            phone.setError("Invalid Phone Number !");
-            phone.setText("");
-
-            phoneValid = false;
-        } else {
-            phone.setError(null);
-            phoneValid = true;
-        }
-
-
-    }
-
+	}
 
 }

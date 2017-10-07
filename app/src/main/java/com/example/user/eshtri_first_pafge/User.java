@@ -6,36 +6,36 @@ package com.example.user.eshtri_first_pafge;
 
 public class User {
 
-    public String name;
+	public String name;
 
-    public String number;
+	public String number;
 
-    public int id;
+	public int id;
 
-    public String email;
+	public String email;
 
-    public boolean hasEmail;
+	public boolean hasEmail;
 
-    //public boolean isConfirmed;
+	// public boolean isConfirmed;
 
-    public String username;
+	public String username;
 
-    public User() {
-        //empty
-    }
+	public User() {
+		// empty
+	}
 
-    public User(int id, String name, String number, String email, String username) {
-        this.name = name;
-        this.number = number;
-        this.id = id;
-        this.email = email;
-        this.username = username;
-        if (email == null) {
-            hasEmail = false;
-        }
-    }
+	public User(int id, String name, String number, String email, String username) {
+		this.name = name;
+		this.number = number;
+		this.id = id;
+		this.email = email;
+		this.username = username;
+		if (email == null) {
+			this.hasEmail = false;
+		}
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return this.username;
+	}
 }
