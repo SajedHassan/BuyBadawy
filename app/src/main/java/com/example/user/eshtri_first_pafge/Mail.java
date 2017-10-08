@@ -1,9 +1,5 @@
 package com.example.user.eshtri_first_pafge;
 
-/**
- * Created by aya_a_000 on 9/18/2017.
- */
-
 import java.util.Date;
 import java.util.Properties;
 
@@ -89,16 +85,18 @@ public class Mail extends Authenticator {
      * @return success feedback.
      * @throws Exception if fails to send the email.
      */
-    public boolean send() throws Exception {
+    public final boolean send() throws Exception {
         final Properties props = _setProperties();
 
-        if (!_user.equals("") && !_pass.equals("") && (this._to.length > 0) && !_from.equals("")
-                && !_subject.equals("") && !_body.equals("")) {
+        if (!_user.isEmpty() && !_pass.isEmpty()
+                && (this._to.length > 0) && !_from.isEmpty()
+                && !_subject.isEmpty() && !_body.isEmpty()) {
 
             final Session session = Session.getInstance(props, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
+                    return new PasswordAuthentication("Eshtery.Badawy@gmail.com",
+                            "BedouinMafia#2017");
                 }
             });
             final SMTPAuthenticator authentication = new SMTPAuthenticator();
@@ -137,7 +135,7 @@ public class Mail extends Authenticator {
     }
 
     @Override
-    public PasswordAuthentication getPasswordAuthentication() {
+    public final PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(_user, _pass);
     }
 
@@ -168,23 +166,23 @@ public class Mail extends Authenticator {
     }
 
     // the getters and setters
-    public String getBody() {
+    public final String getBody() {
         return _body;
     }
 
-    public void setBody(final String _body) {
-        this._body = _body;
+    public final void setBody(final String body) {
+        this._body = body;
     }
 
-    public void setTo(final String[] to) {
+    public final void setTo(final String[] to) {
         this._to = to;
     }
 
-    public void setFrom(final String from) {
+    public final void setFrom(final String from) {
         this._from = from;
     }
 
-    public void setSubject(final String subject) {
+    public final void setSubject(final String subject) {
         this._subject = subject;
     }
 }

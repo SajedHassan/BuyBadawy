@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.user.eshtri_first_pafge.R.id;
-import com.example.user.eshtri_first_pafge.R.layout;
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -24,17 +22,17 @@ import java.util.ArrayList;
  * Fetches the data of products from the database.
  */
 public class MainFragment extends Fragment {
-    public static final String ARG_PAGE = "ARG_PAGE";
+    private static final String ARG_PAGE = "ARG_PAGE";
     private static View containerAvtivity;
-    ArrayList<Product> clothes;
-    ArrayList<Product> carpets;
-    ArrayList<Product> herbs;
-    ArrayList<Product> food;
-    ArrayList<Product> tours;
-    ArrayList<Product> others;
-    ArrayList<ArrayList<Product>> allCategoriesProducts;
+    private ArrayList<Product> clothes;
+    private ArrayList<Product> carpets;
+    private ArrayList<Product> herbs;
+    private ArrayList<Product> food;
+    private ArrayList<Product> tours;
+    private ArrayList<Product> others;
+    private ArrayList<ArrayList<Product>> allCategoriesProducts;
     ListView lay;
-    ArrayList<SectionDataModel> allSampleData;
+    private ArrayList<SectionDataModel> allSampleData;
     private int mPage;
 
     /**
@@ -42,23 +40,23 @@ public class MainFragment extends Fragment {
      * @param page number of the page.
      * @return the new instance.
      */
-    public static MainFragment newInstance(int page) {
-        Bundle args = new Bundle();
+    public static MainFragment newInstance(final int page) {
+        final Bundle args = new Bundle();
         args.putInt(MainFragment.ARG_PAGE, page);
-        MainFragment fragment = new MainFragment();
+        final MainFragment fragment = new MainFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mPage = this.getArguments().getInt(MainFragment.ARG_PAGE);
     }
 
 
     @Override
-    public void onStart() {
+    public final void onStart() {
         super.onStart();
 
 
@@ -70,16 +68,17 @@ public class MainFragment extends Fragment {
         this.others = new ArrayList<Product>();
         this.allCategoriesProducts = new ArrayList<ArrayList<Product>>();
 
-        ProductCDBH gettingActiveUserProducts = new ProductCDBH(this.getActivity(), new AsyncResponse() {
+        final ProductCDBH gettingActiveUserProducts =
+                new ProductCDBH(this.getActivity(), new AsyncResponse() {
             @Override
-            public void processFinish(String json) {
+            public void processFinish(final String json) {
                 Log.v("readAll", json);
                 MainFragment.this.fetchData(json);
                 MainFragment.this.setAllDataAdapter();
             }
         });
 
-        String task = "readAll";
+        final String task = "readAll";
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
 
 
@@ -102,8 +101,9 @@ public class MainFragment extends Fragment {
     // Inflate the fragment layout we defined above for this fragment
     // Set the associated text for the title
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(layout.activity_main, container, false);
+    public final View onCreateView(final LayoutInflater inflater,
+                                   final ViewGroup container, final Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.activity_main, container, false);
         MainFragment.containerAvtivity = view;
         Toast.makeText(this.getActivity(), "Welcome back", Toast.LENGTH_SHORT).show();
 
@@ -111,12 +111,12 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
+    public final void onResume() {
         super.onResume();
         Toast.makeText(this.getActivity(), "back", Toast.LENGTH_SHORT).show();
     }
 
-    public void backAfterDeletion(Context context) {
+    public final void backAfterDeletion(final Context context) {
         //repeated code from onstart
         this.clothes = new ArrayList<Product>();
         this.carpets = new ArrayList<Product>();
@@ -126,16 +126,17 @@ public class MainFragment extends Fragment {
         this.others = new ArrayList<Product>();
         this.allCategoriesProducts = new ArrayList<ArrayList<Product>>();
 
-        ProductCDBH gettingActiveUserProducts = new ProductCDBH(context, true, new AsyncResponse() {
+        final ProductCDBH gettingActiveUserProducts =
+                new ProductCDBH(context, true, new AsyncResponse() {
             @Override
-            public void processFinish(String json) {
+            public void processFinish(final String json) {
                 Log.v("readAll", json);
                 MainFragment.this.fetchData(json);
                 MainFragment.this.setAllDataAdapter();
             }
         });
 
-        String task = "readAll";
+        final String task = "readAll";
         gettingActiveUserProducts.execute(task, MainActivity.activeUser);
     }
 
@@ -143,45 +144,52 @@ public class MainFragment extends Fragment {
      * Responsible of fetching the data from the JSON input.
      * @param json from the database.
      */
-    public void fetchData(String json) {
+    private final void fetchData(final String json) {
         try {
-            JSONArray jsonarray = new JSONArray(json);
+            final JSONArray jsonarray = new JSONArray(json);
             for (int i = 0; i < jsonarray.length(); i++) {
-                JSONObject jsonobject = jsonarray.getJSONObject(i);
+                final JSONObject jsonobject = jsonarray.getJSONObject(i);
 
-                String owner = jsonobject.getString("owner");
-                String phone = jsonobject.getString("phone");
-                String name = jsonobject.getString("name");
-                int cat = Integer.parseInt(jsonobject.getString("category"));
-                String details = jsonobject.getString("details");
-                String properties = jsonobject.getString("properties");
-                String address = jsonobject.getString("address");
-                int price = Integer.parseInt(jsonobject.getString("price"));
+                final String owner = jsonobject.getString("owner");
+                final String phone = jsonobject.getString("phone");
+                final String name = jsonobject.getString("name");
+                final int cat = Integer.parseInt(jsonobject.getString("category"));
+                final String details = jsonobject.getString("details");
+                final String properties = jsonobject.getString("properties");
+                final String address = jsonobject.getString("address");
+                final int price = Integer.parseInt(jsonobject.getString("price"));
 
                 switch (cat) {
                     case 0:
-                        this.clothes.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.clothes.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     case 1:
-                        this.carpets.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.carpets.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     case 2:
-                        this.herbs.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.herbs.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     case 3:
-                        this.food.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.food.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     case 4:
-                        this.tours.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.tours.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     case 5:
-                        this.others.add(new Product(-1, name, cat, details, properties, address, price, owner, phone));
+                        this.others.add(new Product(-1, name,
+                                cat, details, properties, address, price, owner, phone));
                         break;
                     default:
                         //unreachable case
                 }
 
-                Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price + " == " + jsonarray.length());
+                Log.v("hnaaa", name + "," + cat + "," + details + "," +
+                        properties + "," + address + "," + price + " == " + jsonarray.length());
 
 
             }
@@ -193,7 +201,9 @@ public class MainFragment extends Fragment {
             this.allCategoriesProducts.add(this.others);
 
 
-        } catch (Exception e) {
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (final Exception ignored) {
             // TODO
         }
 
@@ -201,11 +211,11 @@ public class MainFragment extends Fragment {
 
         for (int i = 0; i < 6; i++) {
 
-            ArrayList<Product> section = this.allCategoriesProducts.get(i);
-            int numOfItemsInSection = section.size();
+            final ArrayList<Product> section = this.allCategoriesProducts.get(i);
+            final int numOfItemsInSection = section.size();
 
             if (numOfItemsInSection > 0) {
-                SectionDataModel dm = new SectionDataModel();
+                final SectionDataModel dm = new SectionDataModel();
 
                 switch (i) {
                     case 0:
@@ -230,9 +240,11 @@ public class MainFragment extends Fragment {
                         //unreachable case
                 }
 
-                ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
+                final ArrayList<SingleItemModel> singleItem = new ArrayList<SingleItemModel>();
                 for (int j = 0; j < numOfItemsInSection; j++) {
-                    singleItem.add(new SingleItemModel(section.get(j).owner, section.get(j).phone, section.get(j).productN, section.get(j).description, section.get(j).details, section.get(j).address, section.get(j).price + ""));
+                    singleItem.add(new SingleItemModel(section.get(j).owner,
+                            section.get(j).phone, section.get(j).productN, section.get(j).description,
+                            section.get(j).details, section.get(j).address, section.get(j).price + ""));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -244,16 +256,19 @@ public class MainFragment extends Fragment {
         }
     }
 
-    public void setAllDataAdapter() {
+    private final void setAllDataAdapter() {
 
 
-        RecyclerView my_recycler_view = MainFragment.containerAvtivity.findViewById(id.my_recycler_view);
+        final RecyclerView my_recycler_view =
+                MainFragment.containerAvtivity.findViewById(R.id.my_recycler_view);
 
         my_recycler_view.setHasFixedSize(true);
 
-        RecyclerViewDataAdapter adapter = new RecyclerViewDataAdapter(this.getActivity(), this.allSampleData);
+        final RecyclerViewDataAdapter adapter =
+                new RecyclerViewDataAdapter(this.getActivity(), this.allSampleData);
 
-        my_recycler_view.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
+        my_recycler_view.setLayoutManager(new LinearLayoutManager(this.getActivity(),
+                LinearLayoutManager.VERTICAL, false));
 
         my_recycler_view.setAdapter(adapter);
     }
