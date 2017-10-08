@@ -72,8 +72,8 @@ public class ChoosingLang extends AppCompatActivity {
 			}
 		} else {
 			this.setContentView(layout.choosing_language);
-			Button eng = (Button) this.findViewById(id.engB);
-			Button arab = (Button) this.findViewById(id.arabB);
+			Button eng = (Button) this.findViewById(R.id.engB);
+			Button arab = (Button) this.findViewById(R.id.arabB);
 			eng.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {

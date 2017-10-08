@@ -36,7 +36,7 @@ public class CA extends ArrayAdapter<Product> {
         super(context, 0, objects);
         this.context = context;
         this.objects = objects;
-        Log.v("hna CS", objects.get(0).details);
+        //Log.v("hna CS", objects.get(0).details);
     }
 
     @Override
