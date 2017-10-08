@@ -7,13 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.example.user.eshtri_first_pafge.R.id;
-import com.example.user.eshtri_first_pafge.R.layout;
-
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -21,64 +18,66 @@ import java.util.ArrayList;
 /**
  * Created by user on 8/30/2017.
  */
-
 public class MyProducts extends AppCompatActivity {
 
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		this.setContentView(layout.list);
+    @Override
+    protected void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.setContentView(R.layout.list);
 
-		ListView lay = (ListView) this.findViewById(id.list);
-		ArrayList<Product> products = new ArrayList<Product>();
+        final ListView lay = (ListView) this.findViewById(R.id.list);
+        final ArrayList<Product> products = new ArrayList<Product>();
 
-		String json = this.getIntent().getStringExtra("json");
+        final String json = this.getIntent().getStringExtra("json");
 
-		// products.add(new Product("عبايات حريمي", 10, 0, "none",
-		// "none", "none", 1));
+        // products.add(new Product("عبايات حريمي", 10, 0, "none",
+        // "none", "none", 1));
 
-		try {
-			JSONArray jsonarray = new JSONArray(json);
-			for (int i = 0; i < jsonarray.length(); i++) {
-				JSONObject jsonobject = jsonarray.getJSONObject(i);
+        try {
+            final JSONArray jsonarray = new JSONArray(json);
+            for (int i = 0; i < jsonarray.length(); i++) {
+                final JSONObject jsonobject = jsonarray.getJSONObject(i);
 
-				String name = jsonobject.getString("name");
-				int cat = Integer.parseInt(jsonobject.getString("category"));
-				String details = jsonobject.getString("details");
-				String properties = jsonobject.getString("properties");
-				String address = jsonobject.getString("address");
-				int price = Integer.parseInt(jsonobject.getString("price"));
+                final String name = jsonobject.getString("name");
+                final int cat = Integer.parseInt(jsonobject.getString("category"));
+                final String details = jsonobject.getString("details");
+                final String properties = jsonobject.getString("properties");
+                final String address = jsonobject.getString("address");
+                final int price = Integer.parseInt(jsonobject.getString("price"));
 
-				products.add(new Product(-1, name, cat, details, properties, address, price));
+                products.add(new Product(-1, name, cat, details, properties, address, price));
 
-				Log.v("hnaaa", name + "," + cat + "," + details + "," + properties + "," + address + "," + price
-						+ " == " + jsonarray.length());
+                Log.v("hnaaa", name + ',' + cat + ',' + details + ',' +
+                        properties + ',' + address + ',' + price
+                        + " == " + jsonarray.length());
 
-			}
+            }
 
-			CA itemsAdapter = new CA(this, products);
-			lay.setAdapter(itemsAdapter);
+            final CA itemsAdapter = new CA(this, products);
+            lay.setAdapter(itemsAdapter);
 
-		} catch (Exception e) {
-			// TODO
-		}
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (final Exception ignored) {
+            // TODO
+        }
 
-		// if (lay != null)
-		// Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
+        // if (lay != null)
+        // Log.v("3hnaaaaaaaaa", " hnaaaaaaaaa");
 
-		lay.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
-				// String value = (String)adapter.getItemAtPosition(position);
-				// ((TextView)v.findViewById(R.id.productName)).setText("sajed");
-				// assuming string and if you want to get the value on click of
-				// list item
-				// do what you intend to do on click of listview row
-				Intent intent = new Intent(MyProducts.this.getBaseContext(), ProductPreview.class);
-				MyProducts.this.startActivity(intent);
-			}
-		});
+        lay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapter, final View v, final int position, final long arg3) {
+                // String value = (String)adapter.getItemAtPosition(position);
+                // ((TextView)v.findViewById(R.id.productName)).setText("sajed");
+                // assuming string and if you want to get the value on click of
+                // list item
+                // do what you intend to do on click of listview row
+                final Intent intent = new Intent(MyProducts.this.getBaseContext(), ProductPreview.class);
+                MyProducts.this.startActivity(intent);
+            }
+        });
 
-	}
+    }
 
 }
