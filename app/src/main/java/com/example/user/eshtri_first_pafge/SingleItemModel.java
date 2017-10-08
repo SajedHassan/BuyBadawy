@@ -15,10 +15,13 @@ public class SingleItemModel {
     private String price;
 
     public SingleItemModel() {
+        super();
     }
 
-    public SingleItemModel(String owner, String phone, String name, String properties, String details, String address,
-                           String price) {
+    public SingleItemModel(final String owner, final String phone, final String name,
+                           final String properties, final String details, final String address,
+                           final String price) {
+        super();
         this.owner = owner;
         this.phone = phone;
         this.name = name;
@@ -28,59 +31,59 @@ public class SingleItemModel {
         this.price = price;
     }
 
-    public String getProperties() {
+    public final String getProperties() {
         return this.properties;
     }
 
-    public void setProperties(String properties) {
+    public final void setProperties(final String properties) {
         this.properties = properties;
     }
 
-    public String getName() {
+    public final String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
+    public final void setName(final String name) {
         this.name = name;
     }
 
-    public String getDetails() {
+    public final String getDetails() {
         return this.details;
     }
 
-    public void setDetails(String description) {
-        details = description;
+    public final void setDetails(final String description) {
+        this.details = description;
     }
 
-    public String getAddress() {
-        return address;
+    public final String getAddress() {
+        return this.address;
     }
 
-    public void setAddress(String address) {
+    public final void setAddress(final String address) {
         this.address = address;
     }
 
-    public String getPrice() {
-        return price;
+    public final String getPrice() {
+        return this.price;
     }
 
-    public void setPrice(String price) {
+    public final void setPrice(final String price) {
         this.price = price;
     }
 
-    public String getOwner() {
+    public final String getOwner() {
         return this.owner;
     }
 
-    public void setOwner(String owner) {
+    public final void setOwner(final String owner) {
         this.owner = owner;
     }
 
-    public String getPhone() {
+    public final String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
+    public final void setPhone(final String phone) {
         this.phone = phone;
     }
 

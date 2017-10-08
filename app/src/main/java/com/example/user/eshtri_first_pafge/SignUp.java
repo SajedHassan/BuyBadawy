@@ -11,10 +11,6 @@ import com.example.user.eshtri_first_pafge.R.id;
 import com.example.user.eshtri_first_pafge.R.layout;
 
 /**
- * Created by user on 8/29/2017.
- */
-
-/**
  * Class that handles signing up a new user.
  */
 public class SignUp extends AppCompatActivity {
@@ -38,7 +34,7 @@ public class SignUp extends AppCompatActivity {
     private String phonePattern;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(layout.sign_up_form);
         this.name = (EditText) this.findViewById(id.name);
@@ -50,11 +46,11 @@ public class SignUp extends AppCompatActivity {
         this.namePattern = "[\\p{L} ]+";
         this.phonePattern = "[0][1][0-9]{9}";
 
-        Button signUp = (Button) this.findViewById(id.signUpB);
+        final Button signUp = (Button) this.findViewById(id.signUpB);
 
         signUp.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 SignUp.this.emailVal = SignUp.this.email.getText().toString().trim();
                 SignUp.this.usernameVal = SignUp.this.userName.getText().toString().trim();
                 SignUp.this.phoneVal = SignUp.this.phone.getText().toString().trim();
@@ -68,9 +64,10 @@ public class SignUp extends AppCompatActivity {
                     // DataBaseHandelerForAccounts(getBaseContext());
                     // db.addUser(new User(0, nameVal, phoneVal, emailVal,
                     // usernameVal));
-                    String task = "register";
-                    UserCDBH backgroundTask = new UserCDBH(SignUp.this);
-                    backgroundTask.execute(task, SignUp.this.nameVal, SignUp.this.usernameVal, SignUp.this.phoneVal,
+                    final String task = "register";
+                    final UserCDBH backgroundTask = new UserCDBH(SignUp.this);
+                    backgroundTask.execute(task, SignUp.this.nameVal,
+                            SignUp.this.usernameVal, SignUp.this.phoneVal,
                             SignUp.this.emailVal);
                     // finish();
                 }
@@ -83,7 +80,7 @@ public class SignUp extends AppCompatActivity {
     /**
      * Checks the input fields.
      */
-    protected void validateInput() {
+    protected final void validateInput() {
 
         this.validateName();
 
@@ -98,9 +95,9 @@ public class SignUp extends AppCompatActivity {
      * Validates the email to check if the user
      * has provided it.
      */
-    protected void validateEmail() {
+    protected final void validateEmail() {
 
-        if (this.emailVal.length() > 0 && !this.emailVal.matches(this.emailPattern)) {
+        if (!this.emailVal.isEmpty() && !this.emailVal.matches(this.emailPattern)) {
 
             this.email.setError("Invalid Email Address !");
             this.email.setText("");
@@ -118,9 +115,9 @@ public class SignUp extends AppCompatActivity {
      * Method that validates the name to check if the user
      * had provided it.
      */
-    protected void validateName() {
+    protected final void validateName() {
         this.email.setText(this.nameVal);
-        if (this.nameVal.length() == 0) {
+        if (this.nameVal.isEmpty()) {
 
             this.name.setError("Missing Name !");
             this.name.setText("");
@@ -142,8 +139,8 @@ public class SignUp extends AppCompatActivity {
     /**
      * Checks whether the user has provided a username.
      */
-    protected void validateUserName() {
-        if (this.usernameVal.length() == 0) {
+    protected final void validateUserName() {
+        if (this.usernameVal.isEmpty()) {
 
             this.userName.setError("Missing Username !");
             this.userName.setText("");
@@ -167,9 +164,9 @@ public class SignUp extends AppCompatActivity {
     /**
      * Checks whetherr the user has provided a phone number.
      */
-    protected void validatePhone() {
+    protected final void validatePhone() {
 
-        if (this.phoneVal.length() == 0) {
+        if (this.phoneVal.isEmpty()) {
 
             this.phone.setError("Missing Phone Number !");
             this.phone.setText("");
