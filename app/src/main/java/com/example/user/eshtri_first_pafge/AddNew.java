@@ -5,7 +5,6 @@ import android.R.layout;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore.Images;
 import android.provider.MediaStore.Images.Media;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,70 +18,72 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.user.eshtri_first_pafge.R.array;
-import com.example.user.eshtri_first_pafge.R.id;
 
 
 public class AddNew extends AppCompatActivity implements OnItemSelectedListener {
 
     private static final int RESULT_LOAD_IMAGE = 1;
-    ImageView imageView;
-    String chosenCategory;
-    Spinner spinner;
+    private ImageView imageView;
+    private String chosenCategory;
+    private Spinner spinner;
+
+    public AddNew() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.add_product);
+        setContentView(R.layout.add_product);
 
-        this.spinner = (Spinner) this.findViewById(id.catList);
-        this.spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        spinner = (Spinner) findViewById(R.id.catList);
+        spinner.setOnItemSelectedListener(this);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 array.categories, layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(layout.simple_spinner_dropdown_item);
 
-        this.spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);
 
 
-        Button add = (Button) this.findViewById(id.button_submit);
-        Button addPhoto = (Button) this.findViewById(id.AddPhoto);
+        final Button add = (Button) findViewById(R.id.button_submit);
+        final Button addPhoto = (Button) findViewById(R.id.AddPhoto);
 
 
         addPhoto.setOnClickListener(new OnClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
 
-                Intent i = new Intent(
+                Intent inte = new Intent(
                         Intent.ACTION_PICK,
                         Media.EXTERNAL_CONTENT_URI);
 
 
-                AddNew.this.startActivityForResult(i, AddNew.RESULT_LOAD_IMAGE);
+                startActivityForResult(inte, RESULT_LOAD_IMAGE);
             }
         });
 
         add.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 //new SendMail().execute("");
 
-                TextView name = (TextView) AddNew.this.findViewById(id.name);
-                TextView details = (TextView) AddNew.this.findViewById(id.details);
-                TextView properties = (TextView) AddNew.this.findViewById(id.description);
-                TextView address = (TextView) AddNew.this.findViewById(id.address);
-                TextView price = (TextView) AddNew.this.findViewById(id.price);
+                final TextView name = (TextView) findViewById(R.id.name);
+                final TextView details = (TextView) findViewById(R.id.details);
+                final TextView properties = (TextView) findViewById(R.id.description);
+                final TextView address = (TextView) findViewById(R.id.address);
+                final TextView price = (TextView) findViewById(R.id.price);
 
-                String nameVal = name.getText().toString();
-                String detailsVal = details.getText().toString();
-                String propertiesVal = properties.getText().toString();
-                String addressVal = address.getText().toString();
-                String priceVal = price.getText().toString();
-                String catVal = String.valueOf(AddNew.this.spinner.getSelectedItemPosition());
+                final String nameVal = name.getText().toString();
+                final String detailsVal = details.getText().toString();
+                final String propertiesVal = properties.getText().toString();
+                final String addressVal = address.getText().toString();
+                final String priceVal = price.getText().toString();
+                final String catVal = String.valueOf(spinner.getSelectedItemPosition());
 
-                String task = "add";
+                final String task = "add";
                 ///Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-                ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null);
+                final ProductCDBH addNewProductThread = new ProductCDBH(AddNew.this, null);
                 addNewProductThread.execute(task, MainActivity.activeUser, nameVal, catVal, detailsVal, propertiesVal, addressVal, priceVal);
             }
         });
@@ -90,27 +91,27 @@ public class AddNew extends AppCompatActivity implements OnItemSelectedListener 
 
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        this.chosenCategory = adapterView.getItemAtPosition(i).toString();
+    public void onItemSelected(final AdapterView<?> adapterView, final View view, final int i, final long l) {
+        chosenCategory = adapterView.getItemAtPosition(i).toString();
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
+    public void onNothingSelected(final AdapterView<?> adapterView) {
 
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == AddNew.RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri imageUri = data.getData();
+        if ((requestCode == AddNew.RESULT_LOAD_IMAGE) && (resultCode == RESULT_OK) && (data != null)) {
+            final Uri imageUri = data.getData();
 //            String[] filePathColumn = { MediaStore.Images.Media.DATA };
 //
-            this.imageView = (ImageView) this.findViewById(id.imgView);
+            imageView = (ImageView) findViewById(R.id.imgView);
             try {
-                this.imageView.setImageURI(imageUri);
-            } catch (Exception e) {
+                imageView.setImageURI(imageUri);
+            } catch (final RuntimeException ignored) {
                 //Somt Images is not being selected and cases the app to crash
             }
 //            try {
