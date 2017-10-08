@@ -24,75 +24,75 @@ import java.util.ArrayList;
  */
 public class RecyclerViewDataAdapter extends Adapter<ItemRowHolder> {
 
-	private final ArrayList<SectionDataModel> dataList;
-	private final Context mContext;
+    private final ArrayList<SectionDataModel> dataList;
+    private final Context mContext;
 
-	public RecyclerViewDataAdapter(Context context, ArrayList<SectionDataModel> dataList) {
-		this.dataList = dataList;
-		mContext = context;
-	}
+    public RecyclerViewDataAdapter(final Context context, final ArrayList<SectionDataModel> dataList) {
+        super();
+        this.dataList = dataList;
+        this.mContext = context;
+    }
 
-	@Override
-	public RecyclerViewDataAdapter.ItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(layout.list_item, null);
-		RecyclerViewDataAdapter.ItemRowHolder mh = new RecyclerViewDataAdapter.ItemRowHolder(v);
-		return mh;
-	}
+    @Override
+    public final RecyclerViewDataAdapter.ItemRowHolder onCreateViewHolder(final ViewGroup viewGroup, final int i) {
+        final View v = LayoutInflater.from(viewGroup.getContext()).inflate(layout.list_item, null);
+        return new ItemRowHolder(v);
+    }
 
-	@Override
-	public void onBindViewHolder(RecyclerViewDataAdapter.ItemRowHolder itemRowHolder, int i) {
+    @Override
+    public final void onBindViewHolder(final RecyclerViewDataAdapter.ItemRowHolder itemRowHolder, final int i) {
 
-		final String sectionName = this.dataList.get(i).getHeaderTitle();
+        final String sectionName = this.dataList.get(i).getHeaderTitle();
 
-		ArrayList singleSectionItems = this.dataList.get(i).getAllItemsInSection();
+        final ArrayList singleSectionItems = this.dataList.get(i).getAllItemsInSection();
 
-		itemRowHolder.itemTitle.setText(sectionName);
+        itemRowHolder.itemTitle.setText(sectionName);
 
-		SectionListDataAdapter itemListDataAdapter = new SectionListDataAdapter(this.mContext, singleSectionItems);
+        final SectionListDataAdapter itemListDataAdapter = new SectionListDataAdapter(this.mContext, singleSectionItems);
 
-		itemRowHolder.recycler_view_list.setHasFixedSize(true);
-		itemRowHolder.recycler_view_list
-				.setLayoutManager(new LinearLayoutManager(this.mContext, LinearLayoutManager.HORIZONTAL, false));
-		itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
+        itemRowHolder.recycler_view_list.setHasFixedSize(true);
+        itemRowHolder.recycler_view_list
+                .setLayoutManager(new LinearLayoutManager(this.mContext, LinearLayoutManager.HORIZONTAL, false));
+        itemRowHolder.recycler_view_list.setAdapter(itemListDataAdapter);
 
-		itemRowHolder.btnMore.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
+        itemRowHolder.btnMore.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View v) {
 
-				Toast.makeText(v.getContext(), "click event on more, " + sectionName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "click event on more, " + sectionName, Toast.LENGTH_SHORT).show();
 
-			}
-		});
+            }
+        });
 
 		/*
-		 * Glide.with(mContext) .load(feedItem.getImageURL())
+         * Glide.with(mContext) .load(feedItem.getImageURL())
 		 * .diskCacheStrategy(DiskCacheStrategy.ALL) .centerCrop()
 		 * .error(R.drawable.bg) .into(feedListRowHolder.thumbView);
 		 */
-	}
+    }
 
-	@Override
-	public int getItemCount() {
-		return null != this.dataList ? this.dataList.size() : 0;
-	}
+    @Override
+    public final int getItemCount() {
+        return (this.dataList != null) ? this.dataList.size() : 0;
+    }
 
-	public class ItemRowHolder extends ViewHolder {
+    public class ItemRowHolder extends ViewHolder {
 
-		protected TextView itemTitle;
+        final TextView itemTitle;
 
-		protected RecyclerView recycler_view_list;
+        RecyclerView recycler_view_list;
 
-		protected Button btnMore;
+        Button btnMore;
 
-		public ItemRowHolder(View view) {
-			super(view);
+        public ItemRowHolder(final View view) {
+            super(view);
 
-			itemTitle = view.findViewById(id.itemTitle);
-			recycler_view_list = view.findViewById(id.recycler_view_list);
-			btnMore = view.findViewById(id.btnMore);
+            this.itemTitle = view.findViewById(id.itemTitle);
+            this.recycler_view_list = view.findViewById(id.recycler_view_list);
+            this.btnMore = view.findViewById(id.btnMore);
 
-		}
+        }
 
-	}
+    }
 
 }
