@@ -7,32 +7,34 @@ import java.util.ArrayList;
  */
 public class SectionDataModel {
 
-	private String headerTitle;
-	private ArrayList<SingleItemModel> allItemsInSection;
+    private String headerTitle;
+    private ArrayList<SingleItemModel> allItemsInSection;
 
-	public SectionDataModel() {
+    public SectionDataModel() {
+        super();
 
-	}
+    }
 
-	public SectionDataModel(String headerTitle, ArrayList<SingleItemModel> allItemsInSection) {
-		this.headerTitle = headerTitle;
-		this.allItemsInSection = allItemsInSection;
-	}
+    public SectionDataModel(final String headerTitle, final ArrayList<SingleItemModel> allItemsInSection) {
+        super();
+        this.headerTitle = headerTitle;
+        this.allItemsInSection = allItemsInSection;
+    }
 
-	public String getHeaderTitle() {
-		return this.headerTitle;
-	}
+    public final String getHeaderTitle() {
+        return this.headerTitle;
+    }
 
-	public void setHeaderTitle(String headerTitle) {
-		this.headerTitle = headerTitle;
-	}
+    public final void setHeaderTitle(final String headerTitle) {
+        this.headerTitle = headerTitle;
+    }
 
-	public ArrayList<SingleItemModel> getAllItemsInSection() {
-		return this.allItemsInSection;
-	}
+    public final ArrayList<SingleItemModel> getAllItemsInSection() {
+        return this.allItemsInSection;
+    }
 
-	public void setAllItemsInSection(ArrayList<SingleItemModel> allItemsInSection) {
-		this.allItemsInSection = allItemsInSection;
-	}
+    public final void setAllItemsInSection(final ArrayList<SingleItemModel> allItemsInSection) {
+        this.allItemsInSection = allItemsInSection;
+    }
 
 }

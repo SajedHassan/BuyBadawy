@@ -6,7 +6,6 @@ package com.example.user.eshtri_first_pafge;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -29,92 +28,96 @@ import java.util.ArrayList;
  */
 public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
 
-	private final ArrayList<SingleItemModel> itemsList;
-	private final Context mContext;
+    private final ArrayList<SingleItemModel> itemsList;
+    private final Context mContext;
 
-	public SectionListDataAdapter(Context context, ArrayList<SingleItemModel> itemsList) {
-		this.itemsList = itemsList;
-		mContext = context;
-	}
+    public SectionListDataAdapter(final Context context, final ArrayList<SingleItemModel> itemsList) {
+        super();
+        this.itemsList = itemsList;
+        this.mContext = context;
+    }
 
-	@Override
-	public SectionListDataAdapter.SingleItemRowHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-		View v = LayoutInflater.from(viewGroup.getContext()).inflate(layout.list_single_card, null);
-		SectionListDataAdapter.SingleItemRowHolder mh = new SectionListDataAdapter.SingleItemRowHolder(v);
-		return mh;
-	}
+    @Override
+    public final SectionListDataAdapter.SingleItemRowHolder onCreateViewHolder(
+            final ViewGroup viewGroup, final int i) {
+        final View v = LayoutInflater.from(viewGroup.getContext()).inflate(layout.list_single_card, null);
+        return new SectionListDataAdapter.SingleItemRowHolder(v);
+    }
 
-	@Override
-	public void onBindViewHolder(SectionListDataAdapter.SingleItemRowHolder holder, int i) {
+    @Override
+    public final void onBindViewHolder(final SectionListDataAdapter.SingleItemRowHolder holder, final int i) {
 
-		SingleItemModel singleItem = this.itemsList.get(i);
-		holder.tvTitle.setText(singleItem.getName());
-		holder.itemImage.setImageResource(mipmap.test);
+        final SingleItemModel singleItem = this.itemsList.get(i);
+        holder.tvTitle.setText(singleItem.getName());
+        holder.itemImage.setImageResource(mipmap.test);
 
-		holder.name = singleItem.getName();
-		holder.det = singleItem.getDetails();
-		holder.pro = singleItem.getProperties();
-		holder.address = singleItem.getAddress();
-		holder.price = singleItem.getPrice();
-		holder.owner = singleItem.getOwner();
-		holder.phone = singleItem.getPhone();
+        holder.name = singleItem.getName();
+        holder.det = singleItem.getDetails();
+        holder.pro = singleItem.getProperties();
+        holder.address = singleItem.getAddress();
+        holder.price = singleItem.getPrice();
+        holder.owner = singleItem.getOwner();
+        holder.phone = singleItem.getPhone();
 
-		// setting info of each product
+        // setting info of each product
 
 		/*
-		 * Glide.with(mContext) .load(feedItem.getImageURL())
+         * Glide.with(mContext) .load(feedItem.getImageURL())
 		 * .diskCacheStrategy(DiskCacheStrategy.ALL) .centerCrop()
 		 * .error(R.drawable.bg) .into(feedListRowHolder.thumbView);
 		 */
-	}
+    }
 
-	@Override
-	public int getItemCount() {
-		return null != this.itemsList ? this.itemsList.size() : 0;
-	}
+    @Override
+    public final int getItemCount() {
+        return (this.itemsList != null) ? this.itemsList.size() : 0;
+    }
 
-	public class SingleItemRowHolder extends ViewHolder {
+    public class SingleItemRowHolder extends ViewHolder {
 
-		protected TextView tvTitle;
-		protected ImageView itemImage;
-		protected String name;
-		protected String det;
-		protected String pro;
-		protected String address;
-		protected String price;
-		protected String owner;
-		protected String phone;
+        TextView tvTitle;
+        ImageView itemImage;
+        String name;
+        String det;
+        String pro;
+        String address;
+        String price;
+        String owner;
+        String phone;
 
-		public SingleItemRowHolder(View view) {
-			super(view);
+        public SingleItemRowHolder(final View view) {
+            super(view);
 
-			tvTitle = view.findViewById(id.tvTitle);
-			itemImage = view.findViewById(id.itemImage);
+            this.tvTitle = view.findViewById(id.tvTitle);
+            this.itemImage = view.findViewById(id.itemImage);
 
-			view.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(final View v) {
 
-					Toast.makeText(v.getContext(), SectionListDataAdapter.SingleItemRowHolder.this.tvTitle.getText(),
-							Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent(SectionListDataAdapter.this.mContext, ProductPreview.class);
+                    Toast.makeText(v.getContext(),
+                            SectionListDataAdapter.SingleItemRowHolder.this.tvTitle.getText(),
+                            Toast.LENGTH_SHORT).show();
+                    final Intent intent = new Intent(SectionListDataAdapter.this.mContext,
+                            ProductPreview.class);
 
-					intent.putExtra("name", SectionListDataAdapter.SingleItemRowHolder.this.name);
-					intent.putExtra("det", SectionListDataAdapter.SingleItemRowHolder.this.det);
-					intent.putExtra("pro", SectionListDataAdapter.SingleItemRowHolder.this.pro);
-					intent.putExtra("address", SectionListDataAdapter.SingleItemRowHolder.this.address);
-					intent.putExtra("price", SectionListDataAdapter.SingleItemRowHolder.this.price);
-					intent.putExtra("owner", SectionListDataAdapter.SingleItemRowHolder.this.owner);
-					intent.putExtra("phone", SectionListDataAdapter.SingleItemRowHolder.this.phone);
-					intent.putExtra("publicProduct", true);
+                    intent.putExtra("name", SectionListDataAdapter.SingleItemRowHolder.this.name);
+                    intent.putExtra("det", SectionListDataAdapter.SingleItemRowHolder.this.det);
+                    intent.putExtra("pro", SectionListDataAdapter.SingleItemRowHolder.this.pro);
+                    intent.putExtra("address",
+                            SectionListDataAdapter.SingleItemRowHolder.this.address);
+                    intent.putExtra("price", SectionListDataAdapter.SingleItemRowHolder.this.price);
+                    intent.putExtra("owner", SectionListDataAdapter.SingleItemRowHolder.this.owner);
+                    intent.putExtra("phone", SectionListDataAdapter.SingleItemRowHolder.this.phone);
+                    intent.putExtra("publicProduct", true);
 
-					SectionListDataAdapter.this.mContext.startActivity(intent);
+                    SectionListDataAdapter.this.mContext.startActivity(intent);
 
-				}
-			});
+                }
+            });
 
-		}
+        }
 
-	}
+    }
 
 }
