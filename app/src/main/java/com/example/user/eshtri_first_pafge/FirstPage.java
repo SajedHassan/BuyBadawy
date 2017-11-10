@@ -64,6 +64,17 @@ public class FirstPage extends AppCompatActivity {
     }
 
     /**
+     * Shows the "About Us" page.
+     *
+     * @param v view.
+     */
+    public final void aboutUs(final View v) {
+        final Intent intent = new Intent(this, AboutUs.class);
+
+        this.startActivity(intent);
+    }
+
+    /**
      * Redirects to the signing up page.
      *
      * @param v view.
