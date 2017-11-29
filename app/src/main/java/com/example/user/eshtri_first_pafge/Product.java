@@ -48,8 +48,9 @@ public class Product {
      * @param address     address of the seller.
      * @param price       of the product.
      */
+
     public Product(int productId, String productN, int category, String details, String description, String address,
-                   int price) {
+                   int price, String image) {
         this.productN = productN;
         this.productId = productId;
         this.price = price;
@@ -57,6 +58,7 @@ public class Product {
         this.description = description;
         this.details = details;
         this.category = category;
+        this.image = image;
     }
 
     // public Product (final int productId, final String productN, final int
@@ -86,7 +88,7 @@ public class Product {
      * @param phone
      */
     public Product(int productId, String productN, int category, String details, String description, String address,
-                   int price, String owner, String phone) {
+                   int price, String owner, String phone, String image) {
         this.productN = productN;
         this.productId = productId;
         this.price = price;
@@ -96,6 +98,7 @@ public class Product {
         this.category = category;
         this.owner = owner;
         this.phone = phone;
+        this.image = image;
     }
 
     // public String getNumber() {

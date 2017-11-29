@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -178,7 +179,14 @@ public class UserCDBH extends AsyncTask<Object, Void, String> {
     @Override
     protected final void onPostExecute(final String s) {
         if (this.actionSelector == this.REGISTER) {
-            final String[] params = s.split("[,]");
+            String[] params = null;
+            try {
+                params = s.split("[,]");
+            } catch (Exception e) {
+                context.startActivity(new Intent(context, NoInternetAccess.class));
+                Toast.makeText(context, "No internet connection!", Toast.LENGTH_SHORT).show();
+                return;
+            }
             final String token = params[0];
             final String id = params[1];
             final String email = params[2];

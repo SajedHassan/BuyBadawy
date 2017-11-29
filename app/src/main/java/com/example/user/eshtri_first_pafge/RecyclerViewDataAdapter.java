@@ -27,6 +27,8 @@ public class RecyclerViewDataAdapter extends Adapter<ItemRowHolder> {
     private final ArrayList<SectionDataModel> dataList;
     private final Context mContext;
 
+
+
     public RecyclerViewDataAdapter(final Context context, final ArrayList<SectionDataModel> dataList) {
         super();
         this.dataList = dataList;

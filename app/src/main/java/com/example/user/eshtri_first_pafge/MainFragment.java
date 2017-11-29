@@ -34,7 +34,7 @@ public class MainFragment extends Fragment {
     ListView lay;
     private ArrayList<SectionDataModel> allSampleData;
     private int mPage;
-
+    static Context context;
     /**
      * Creates a new instance of this class with the arguments from the ARG_Page.
      * @param page number of the page.
@@ -106,14 +106,14 @@ public class MainFragment extends Fragment {
         final View view = inflater.inflate(R.layout.activity_main, container, false);
         MainFragment.containerAvtivity = view;
         Toast.makeText(this.getActivity(), "Welcome back", Toast.LENGTH_SHORT).show();
-
+        context = getActivity();
         return view;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        Toast.makeText(this.getActivity(), "back", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getActivity(), "back", Toast.LENGTH_SHORT).show();
     }
 
     public final void backAfterDeletion(final Context context) {
@@ -158,31 +158,32 @@ public class MainFragment extends Fragment {
                 final String properties = jsonobject.getString("properties");
                 final String address = jsonobject.getString("address");
                 final int price = Integer.parseInt(jsonobject.getString("price"));
+                final String image = jsonobject.getString("image");
 
                 switch (cat) {
                     case 0:
                         this.clothes.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     case 1:
                         this.carpets.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     case 2:
                         this.herbs.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     case 3:
                         this.food.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     case 4:
                         this.tours.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     case 5:
                         this.others.add(new Product(-1, name,
-                                cat, details, properties, address, price, owner, phone));
+                                cat, details, properties, address, price, owner, phone, image));
                         break;
                     default:
                         //unreachable case
@@ -244,7 +245,7 @@ public class MainFragment extends Fragment {
                 for (int j = 0; j < numOfItemsInSection; j++) {
                     singleItem.add(new SingleItemModel(section.get(j).owner,
                             section.get(j).phone, section.get(j).productN, section.get(j).description,
-                            section.get(j).details, section.get(j).address, section.get(j).price + ""));
+                            section.get(j).details, section.get(j).address, section.get(j).price + "", section.get(j).image));
                 }
 
                 dm.setAllItemsInSection(singleItem);
@@ -265,7 +266,7 @@ public class MainFragment extends Fragment {
         my_recycler_view.setHasFixedSize(true);
 
         final RecyclerViewDataAdapter adapter =
-                new RecyclerViewDataAdapter(this.getActivity(), this.allSampleData);
+                new RecyclerViewDataAdapter(context, this.allSampleData);
 
         my_recycler_view.setLayoutManager(new LinearLayoutManager(this.getActivity(),
                 LinearLayoutManager.VERTICAL, false));

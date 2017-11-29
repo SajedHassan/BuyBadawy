@@ -1,6 +1,5 @@
 package com.example.user.eshtri_first_pafge;
 
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -41,12 +41,6 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 		delegate = interfaceObject;
 	}
 
-	ProductCDBH(Context context, AsyncResponse interfaceObject, Bitmap image) {
-		this.context = context;
-		delegate = interfaceObject;
-		this.image = image;
-
-	}
 
 	ProductCDBH(Context context, boolean progressPermited, AsyncResponse interfaceObject) {
 		progressPermitted = progressPermited;
@@ -54,9 +48,11 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 		delegate = interfaceObject;
 	}
 
+
+
 	@Override
 	protected String doInBackground(Object... params) {
-
+        //uploadFile(sajedLhadMaftker);
 		String urlRegistration = "https://eshtrybadawy.000webhostapp.com/products-addNew.php";
 		String urlLogin = "https://eshtrybadawy.000webhostapp.com/products-read.php";
 		String urlReadAllForMainActivity = "https://eshtrybadawy.000webhostapp.com/all_products_read.php";
@@ -81,6 +77,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 			String properties = params[5].toString();
 			String address = params[6].toString();
 			String price = params[7].toString();
+			String picName = params[8].toString();
 
 			SecureRandom random = new SecureRandom();
 			byte bytes[] = new byte[20];
@@ -108,7 +105,9 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 						+ URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&"
 						// +URLEncoder.encode("image","UTF-8")+"="+URLEncoder.encode(encodedImage,"UTF-8")+"&"
 						+ URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8") + "&"
-						+ URLEncoder.encode("price", "UTF-8") + "=" + URLEncoder.encode(price, "UTF-8");
+						+ URLEncoder.encode("price", "UTF-8") + "=" + URLEncoder.encode(price, "UTF-8") + "&"
+						+ URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(picName, "UTF-8");
+
 
 				bufferedWriter.write(myData);
 				bufferedWriter.flush();
@@ -132,7 +131,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 				this.actionSelector = this.ADDNEW;
 
 				return token + "," + dataResponse + "," + owner + "," + name + "," + cat + "," + details + ","
-						+ properties + "," + address + "," + price;
+						+ properties + "," + address + "," + price + "," + picName;
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -298,22 +297,33 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 	protected void onPostExecute(String s) {
 		if (this.actionSelector == this.ADDNEW) {
 
-			String[] params = s.split("[,]");
-			String token = params[0];
-			String id = params[1];
-			String owner = params[2];
-			String name = params[3];
-			String cat = params[4];
-			String details = params[5];
-			String properties = params[6];
-			String address = params[7];
-			String price = params[8];
+			String[] params = null;
+			String token = null;
+			try {
+				params = s.split("[,]");
+				token = params[0];
+			} catch (Exception e) {
+				context.startActivity(new Intent(context, NoInternetAccess.class));
+                Toast.makeText(context, "No internet connection!", Toast.LENGTH_SHORT).show();
+                return;
+			}
+				String id = params[1];
+				String owner = params[2];
+				String name = params[3];
+				String cat = params[4];
+				String details = params[5];
+				String properties = params[6];
+				String address = params[7];
+				String price = params[8];
+				String picName = params[9];
+
+
 
 			String link = "https://eshtrybadawy.000webhostapp.com/products-confirmation.php?sentToken=" + token + "&id="
 					+ id;
 
 			ProductCDBH.SendMail activationMail = new ProductCDBH.SendMail();
-			activationMail.execute(link, owner, name, cat, details, properties, address, price);
+			activationMail.execute(link, owner, name, cat, details, properties, address, price, picName);
 
 			Intent intent = new Intent(this.context, MainActivity.class);
 			// display("Login Failed...", "That email and password do not match
@@ -396,6 +406,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 			String properties = params[5];
 			String address = params[6];
 			String price = params[7];
+			String imageName = params[8];
 
 			Mail m = new Mail("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
 			String[] toArr = { "hassanalmorsy1959@gmail.com" };
@@ -407,7 +418,7 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 
 			m.setBody("A user with id: " + owner + " has added a product with name: " + name + " and category: " + cat
 					+ " with details: " + details + " properties: " + properties + " and address: " + address
-					+ " price: " + price + "$    to confirm it click the link below: " + link);
+					+ " price: " + price + "$    to confirm it click the link below: " + link + " and uploadded the following picture:" + "http://eshtrybadawy.000webhostapp.com/uploads/" + imageName);
 
 			try {
 				if (m.send()) {

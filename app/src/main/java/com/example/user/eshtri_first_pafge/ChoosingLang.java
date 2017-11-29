@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.user.eshtri_first_pafge.R.layout;
 
+import java.net.InetAddress;
 import java.util.Locale;
 
 /**
@@ -40,6 +41,7 @@ public class ChoosingLang extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPref = this.getSharedPreferences("users", Context.MODE_PRIVATE);
         String id = sharedPref.getString("lang", null);
@@ -116,5 +118,16 @@ public class ChoosingLang extends AppCompatActivity {
         }
 
     }
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
 
 }

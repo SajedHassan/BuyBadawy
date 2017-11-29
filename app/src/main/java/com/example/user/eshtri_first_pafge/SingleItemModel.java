@@ -13,6 +13,7 @@ public class SingleItemModel {
     private String details;
     private String address;
     private String price;
+    private String image;
 
     public SingleItemModel() {
         super();
@@ -20,7 +21,7 @@ public class SingleItemModel {
 
     public SingleItemModel(final String owner, final String phone, final String name,
                            final String properties, final String details, final String address,
-                           final String price) {
+                           final String price, final String image) {
         super();
         this.owner = owner;
         this.phone = phone;
@@ -29,6 +30,7 @@ public class SingleItemModel {
         this.details = details;
         this.address = address;
         this.price = price;
+        this.image = image;
     }
 
     public final String getProperties() {
@@ -87,4 +89,11 @@ public class SingleItemModel {
         this.phone = phone;
     }
 
+    public final String getImageName() {
+        return this.image;
+    }
+
+    public final void setImageName(final String image) {
+        this.image = image;
+    }
 }

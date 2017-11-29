@@ -17,6 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildscript {
+        repositories {
+            jcenter()
+        }
+    }
 }
 
 dependencies {
@@ -34,6 +40,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'dev.dworks.libs:volleyplus:+'
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')
     compile files('libs/mail.jar')

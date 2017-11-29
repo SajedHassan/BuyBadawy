@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.example.user.eshtri_first_pafge.R.id;
 import com.example.user.eshtri_first_pafge.R.layout;
-import com.example.user.eshtri_first_pafge.R.mipmap;
 import com.example.user.eshtri_first_pafge.SectionListDataAdapter.SingleItemRowHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,9 @@ import java.util.ArrayList;
 public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
 
     private final ArrayList<SingleItemModel> itemsList;
-    private final Context mContext;
+    private static Context mContext;
+
+
 
     public SectionListDataAdapter(final Context context, final ArrayList<SingleItemModel> itemsList) {
         super();
@@ -49,7 +51,11 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
 
         final SingleItemModel singleItem = this.itemsList.get(i);
         holder.tvTitle.setText(singleItem.getName());
-        holder.itemImage.setImageResource(mipmap.test);
+
+        Picasso.with(mContext).load(
+                "http://eshtrybadawy.000webhostapp.com/uploads/" + singleItem.getImageName()).into(holder.itemImage);
+
+//        holder.itemImage.setImageResource(mipmap.test);
 
         holder.name = singleItem.getName();
         holder.det = singleItem.getDetails();
@@ -58,6 +64,8 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
         holder.price = singleItem.getPrice();
         holder.owner = singleItem.getOwner();
         holder.phone = singleItem.getPhone();
+        holder.image = singleItem.getImageName();
+
 
         // setting info of each product
 
@@ -84,6 +92,7 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
         String price;
         String owner;
         String phone;
+        String image;
 
         public SingleItemRowHolder(final View view) {
             super(view);
@@ -98,7 +107,7 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
                     Toast.makeText(v.getContext(),
                             SectionListDataAdapter.SingleItemRowHolder.this.tvTitle.getText(),
                             Toast.LENGTH_SHORT).show();
-                    final Intent intent = new Intent(SectionListDataAdapter.this.mContext,
+                    final Intent intent = new Intent(mContext,
                             ProductPreview.class);
 
                     intent.putExtra("name", SectionListDataAdapter.SingleItemRowHolder.this.name);
@@ -109,6 +118,8 @@ public class SectionListDataAdapter extends Adapter<SingleItemRowHolder> {
                     intent.putExtra("price", SectionListDataAdapter.SingleItemRowHolder.this.price);
                     intent.putExtra("owner", SectionListDataAdapter.SingleItemRowHolder.this.owner);
                     intent.putExtra("phone", SectionListDataAdapter.SingleItemRowHolder.this.phone);
+//                    Log.v("baaa", SectionListDataAdapter.SingleItemRowHolder.this.image.length() + "");
+                    intent.putExtra("image", SectionListDataAdapter.SingleItemRowHolder.this.image);
                     intent.putExtra("publicProduct", true);
 
                     SectionListDataAdapter.this.mContext.startActivity(intent);

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import java.net.InetAddress;
+
 public class MainActivity extends AppCompatActivity {
 
     static int activeUser = -1;
@@ -34,14 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         final Intent caller = this.getIntent();
-
-        // TODO do not forget to get that btngam back to -1 after logging out
         if (MainActivity.activeUser == -1) {
             try {
                 MainActivity.activeUser = caller.getIntExtra("id", -1);
-                Toast.makeText(this, MainActivity.activeUser + "", Toast.LENGTH_SHORT).show();
             } catch (final RuntimeException ignored) {
                 // TODO
             }
@@ -104,11 +105,22 @@ public class MainActivity extends AppCompatActivity {
                 editor.remove("phone");
 
                 editor.apply();
-
+                MainActivity.activeUser = -1;
                 final Intent intent = new Intent(MainActivity.this.getBaseContext(), FirstPage.class);
                 MainActivity.this.startActivity(intent);
             }
         });
+
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
 
     }
 

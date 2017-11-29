@@ -78,9 +78,10 @@ public class MyProductsFragment extends Fragment {
                         final String properties = jsonobject.getString("properties");
                         final String address = jsonobject.getString("address");
                         final int price = Integer.parseInt(jsonobject.getString("price"));
+                        final String image = jsonobject.getString("image");
 
                         MyProductsFragment.this.products
-                                .add(new Product(productId, name, cat, details, properties, address, price));
+                                .add(new Product(productId, name, cat, details, properties, address, price, image));
 
                         Log.v("saaaaaaaaaaaaaa", name + "," + cat + "," + details + "," + properties + "," + address
                                 + "," + price + " == " + jsonarray.length());
@@ -119,6 +120,7 @@ public class MyProductsFragment extends Fragment {
                 intent.putExtra("pro", clickedItem.description);
                 intent.putExtra("address", clickedItem.address);
                 intent.putExtra("price", clickedItem.price + "");
+                intent.putExtra("image", clickedItem.image);
 
                 MyProductsFragment.this.startActivity(intent);
             }

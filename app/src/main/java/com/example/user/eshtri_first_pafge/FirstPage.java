@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import java.net.InetAddress;
+
 /**
  * Class that runs the first page displayed.
  */
@@ -94,6 +96,17 @@ public class FirstPage extends AppCompatActivity {
         final Intent intent = new Intent(this, LoginActivity.class);
 
         this.startActivity(intent);
+    }
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }
