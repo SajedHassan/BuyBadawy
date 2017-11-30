@@ -409,9 +409,9 @@ public class ProductCDBH extends AsyncTask<Object, Void, String> {
 			String imageName = params[8];
 
 			Mail m = new Mail("Eshtery.Badawy@gmail.com", "BedouinMafia#2017");
-			String[] toArr = { "hassanalmorsy1959@gmail.com" };
-			// , "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com",
-			// "promohamed5hater@gmail.com"
+			String[] toArr = { "hassanalmorsy1959@gmail.com" , "heshammedhat5@gmail.com", "aya_aly_abouzeid@yahoo.com",
+					"promohamed5hater@gmail.com"};
+
 			m.setTo(toArr);
 			m.setFrom("Eshtery.Badawy@gmail.com");
 			m.setSubject("Eshtery Badawy | New Product Request");
