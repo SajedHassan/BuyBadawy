@@ -22,3 +22,4 @@ The flow:
 
 In the internship, only a design and prototype was required.
 Our team has been working on making the project a reality ever since.
+Link on store: https://play.google.com/store/apps/details?id=alexu.csed.user.eshtri_first_pafge
